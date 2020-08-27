@@ -1,0 +1,24 @@
+{
+  "name": "masoudniki/vcenter",
+  "type": "library",
+  "description": "simple sdk for manage and working with vspahre automation api",
+  "keywords": ["vsphare","vmware","automation api","esexi","manage vcenter"],
+  "homepage": "https://github.com/masoudniki",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "masoudniki",
+      "email": "masoud.niki79@gmail.com",
+      "homepage": "http://s",
+      "role": "Developer"
+    }
+  ],
+  "autoload": {
+    "psr-4": {"vsphere\\": "src/"}
+  },
+  "require": {
+    "php": "^7.2.5",
+    "ext-json": "*",
+    "guzzlehttp/guzzle": "^7.0"
+  }
+}
