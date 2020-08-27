@@ -18,7 +18,7 @@
 
         public function getAllOfVm(array $content=null){
 
-            $vms=$this->connection->makeRequest(self::GET,"vcenter/src",false,$content);
+            $vms=$this->connection->makeRequest(self::GET,"vcenter/vm",false,$content);
 
 
             return new manageVmObjects(json_decode($vms->getBody()),$this->connection);
@@ -27,7 +27,7 @@
         }
         public function getVmByVm($VM,array $content=null){
 
-            $object=$this->connection->makeRequest(self::GET,"vcenter/src/$VM",false,$content);
+            $object=$this->connection->makeRequest(self::GET,"vcenter/vm/$VM",false,$content);
 
             return vm::makeVmInstance($this->connection,json_decode($object->getBody()),$VM);
 

@@ -46,7 +46,7 @@
         }
 
         public function getPowerStatus(){
-            return $this->connection->makeRequest(connection::GET,"/vcenter/src/$this->vm/power",false);
+            return $this->connection->makeRequest(connection::GET,"/vcenter/vm/$this->vm/power",false);
         }
 
 
@@ -54,7 +54,7 @@
             if($this->canUpdateVmStatus())
             {
                 $this->poser_state="POWERED_OFF";
-                return $this->connection->makeRequest(connection::POST,"/vcenter/src/$this->vm/power/stop",false);
+                return $this->connection->makeRequest(connection::POST,"/vcenter/vm/$this->vm/power/stop",false);
             }
             return "you cant".__METHOD__." bc the server is not running";
 
@@ -65,7 +65,7 @@
             if($this->canUpdateVmStatus())
             {
                 $this->power_state="POWERED_ON";
-                return $this->connection->makeRequest(connection::POST,"/vcenter/src/$this->vm/power/reset",false);
+                return $this->connection->makeRequest(connection::POST,"/vcenter/vm/$this->vm/power/reset",false);
             }
             return "you cant".__METHOD__." bc the server is not running";
         }
@@ -74,13 +74,13 @@
             if(!$this->canUpdateVmStatus())
             {
                 $this->power_state="POWERED_ON";
-                return $this->connection->makeRequest(connection::POST,"/vcenter/src/$this->vm/power/start",false);
+                return $this->connection->makeRequest(connection::POST,"/vcenter/vm/$this->vm/power/start",false);
             }
         }
         public function suspendServer(){
             if($this->canUpdateVmStatus()){
                 $this->power_state="SUSPENDED";
-                return $this->connection->makeRequest(connection::POST,"/vcenter/src/$this->vm/power/suspend",false);
+                return $this->connection->makeRequest(connection::POST,"/vcenter/vm/$this->vm/power/suspend",false);
 
             }
         }
