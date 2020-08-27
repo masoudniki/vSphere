@@ -1,7 +1,7 @@
 <?php
     namespace vsphere;
 
-    class manageVmObjects implements Iterator{
+    class manageVmObjects implements \Iterator{
         private $items=[];
         private $position = 0;
 
