@@ -40,12 +40,19 @@
                 }
         }
 
+        public function makeFull(){
+            $vm=$this->connection->makeRequest($this->connection::GET,"vcenter/vm/".$this->vm,false);
+            return vm::makeVmInstance($this->connection,json_decode($vm->getBody(),$this->vm));
+        }
+
+
+
         public function __set($name, $value)
         {
             $this->$name=$value;
         }
 
-        public function getPowerStatus(){
+        public function getVmStatus(){
             return $this->connection->makeRequest(connection::GET,"/vcenter/vm/$this->vm/power",false);
         }
 
@@ -53,8 +60,12 @@
         public function turnOffServer(){
             if($this->canUpdateVmStatus())
             {
-                $this->poser_state="POWERED_OFF";
-                return $this->connection->makeRequest(connection::POST,"/vcenter/vm/$this->vm/power/stop",false);
+                $this->power_state="POWERED_OFF";
+                $response=$this->connection->makeRequest(connection::POST,"/vcenter/vm/$this->vm/power/stop",false);
+                if((string) $response->getBody() === '' &&  $response->getStatusCode() >= 200){
+                    return new Response("true",__METHOD__,"operation was successful");
+                }
+                return false;
             }
             return "you cant".__METHOD__." bc the server is not running";
 
@@ -65,24 +76,38 @@
             if($this->canUpdateVmStatus())
             {
                 $this->power_state="POWERED_ON";
-                return $this->connection->makeRequest(connection::POST,"/vcenter/vm/$this->vm/power/reset",false);
+                $response=$this->connection->makeRequest(connection::POST,"/vcenter/vm/$this->vm/power/reset",false);
+                if((string) $response->getBody() === '' &&  $response->getStatusCode() >= 200){
+                    return new Response("true",__METHOD__,"operation was successful");
+                }
+                return false;
+
             }
-            return "you cant".__METHOD__." bc the server is not running";
+            return new Response("false",__METHOD__,"only when vm is power on is working");
         }
 
         public function turnOnServer(){
             if(!$this->canUpdateVmStatus())
             {
                 $this->power_state="POWERED_ON";
-                return $this->connection->makeRequest(connection::POST,"/vcenter/vm/$this->vm/power/start",false);
+                $response=$this->connection->makeRequest(connection::POST,"/vcenter/vm/$this->vm/power/start",false);
+                if((string) $response->getBody() === '' &&  $response->getStatusCode() >= 200){
+                    return new Response("true",__METHOD__,"operation was successful");
+                }
+                return false;
             }
+            return new Response("false",__METHOD__,"only when vm is power off or suspend is working");
         }
         public function suspendServer(){
             if($this->canUpdateVmStatus()){
                 $this->power_state="SUSPENDED";
-                return $this->connection->makeRequest(connection::POST,"/vcenter/vm/$this->vm/power/suspend",false);
-
+                $response= $this->connection->makeRequest(connection::POST,"/vcenter/vm/$this->vm/power/suspend",false);
+                if((string) $response->getBody() === '' &&  $response->getStatusCode() >= 200){
+                    return new Response("true",__METHOD__,"operation was successful");
+                }
+                return false;
             }
+            return new Response("false",__METHOD__,"only when vm is power on is working");
         }
 
 
