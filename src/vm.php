@@ -42,7 +42,7 @@
 
         public function makeFull(){
             $vm=$this->connection->makeRequest($this->connection::GET,"vcenter/vm/".$this->vm,false);
-            return vm::makeVmInstance($this->connection,json_decode($vm->getBody(),$this->vm));
+            return vm::makeVmInstance($this->connection,json_decode($vm->getBody()),$this->vm);
         }
 
 
