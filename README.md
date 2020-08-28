@@ -28,7 +28,7 @@ otherwise you get an error with this message
 the class use this parameter for get session id . after getting sessin id it will use it for authentication
 
 ### verifyCE
-if your vcenter web client running with ssl you should pass ** ture ** otherwise you should pass ** false **
+if your vcenter web client running with ssl you should pass **ture** otherwise you should pass **false**
 
 > if you are using self signed certificate pass false to this parameter or pass the path of your certificate
 
