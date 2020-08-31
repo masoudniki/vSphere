@@ -20,8 +20,8 @@ Then simply create an instance from vmWare
 $vcenter=new \vsphere\vmware("https://yourhost.com/","your user name","and your password",false);
 ```
 ### host
-First parameter you should pass to the vmware class make sure that your URL start with http or https and end with **/**
-otherwise you get an error with this message 
+First parameter you should pass to the vmWare class make sure that your URL starts with HTTP or ends with HTTPS **/**
+Otherwise, You get the following error message:
 > host not found
 
 ### username and password
