@@ -1,5 +1,5 @@
-# vSpahre
-Simple SDK for working with vSphare automation API. You can use it to manage ESX and vCenter servers. Currently the library supports vSphere API from tbe version 6.7
+# vSphere
+Simple SDK for working with vSphere automation API. You can use it to manage ESX and vCenter servers. Currently the library supports vSphere API from tbe version 6.7
 
 
 # Installation
@@ -14,13 +14,13 @@ Create a php file and add the autoload.php
 <img  src="https://i.ibb.co/3BmmbLX/Screenshot-2020-08-27-18-59-48.png" alt="Screenshot-2020-08-27-18-59-48" border="0">
 </p>
 
-Then simply create an instance from vmWare
+Then simply create an instance from VMware
 
 ```php
 $vcenter=new \vsphere\vmware("https://yourhost.com/","your user name","and your password",false);
 ```
 ### Host
-First parameter you should pass to the vmWare class make sure that your URL starts with HTTP or ends with HTTPS **/**
+First parameter you should pass to the VMware class make sure that your URL starts with HTTP or ends with HTTPS **/**
 Otherwise, You get the following error message:
 > host not found
 
