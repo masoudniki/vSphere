@@ -17,15 +17,40 @@ Create a php file and add the autoload.php
 Then simply create an instance from VMware
 
 ```php
-$vcenter=new \vsphere\vmware("https://yourhost.com/","your user name","and your password",false);
+$vcenter=new \vsphere\vmware("https://yourhost.com/",credential,false);
 ```
 ### Host
 First parameter you should pass to the VMware class make sure that your URL starts with HTTP or ends with HTTPS **/**
 Otherwise, You get the following error message:
 > host not found
 
-### Username and Password
-The class uses this parameter in order to get the Session ID. Afterwards, Session ID will be used for authentication purposes:
+### Credential
+##### Username and password 
+so for authentication you can pass vcenter usernme and password as a array like this :
+```php
+new \vsphere\vmware("https://yourhost.com/",['userernamme'=>"your vcter username","pasword"=>"your vcnter password"],false);
+```
+
+##### sessionIdHeader 
+
+or you can easily get the session id from your vcenter and pass it to credential with key **Vmware-Api-Session-Id**
+```php
+new \vsphere\vmware("https://yourhost.com/",['Vmware-Api-Session-Id'=>"e5560ccba5a622f4325cfcfb1991df0e"],false);
+```
+
+i really recommand to use sessionIdHeader for authentication because it much more faster that username-password 
+
+**NOTE** before using sessionIdHeader for authentication you should increase the expiration time in your vcnter
+> for more information refer to documentation
+
+
+when you pass username and password to the vmware class it will use it to get session id from your vcenter and save it in **$session** in connection class
+
+
+
+
+
+
 
 ### verifyCE
 in case your vCenter web client is running on ssl, You should pass **true**, Otherwise, you should pass **false**
