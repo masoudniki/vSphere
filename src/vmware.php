@@ -7,11 +7,10 @@
         private $connection;
 
 
-        public function __construct($host, $username, $password, $verifyCE)
+        public function __construct($host,array $credential, $verifyCE)
         {
 
-            $this->connection=connection::getInstance(new Client(['verify'=>$verifyCE]),$host,$username,$password);
-            $this->connection->getSession();
+            $this->connection=connection::getInstance(new Client(['verify'=>$verifyCE]),$host,array $credential);
 
         }
 

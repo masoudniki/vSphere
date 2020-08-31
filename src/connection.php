@@ -1,5 +1,7 @@
 <?php
 namespace vsphere;
+use vsphere\Exceptions\CredentialException;
+
 class connection{
     const LOGIN_URL = "com/vmware/cis/session";
     const GET ="GET";
@@ -12,22 +14,21 @@ class connection{
     private $host;
     private $username;
     private $password;
-    public static function getInstance(\GuzzleHttp\Client $connection,$host,$username,$password){
+    public static function getInstance(\GuzzleHttp\Client $connection,$host,array $credential){
         if(static::$connectionInstance==null)
         {
-            static::$connectionInstance=new self($connection,$host,$username,$password);
+            static::$connectionInstance=new self($connection,$host,array $credential);
         }
         return static::$connectionInstance;
 
 
     }
 
-    private function __construct($connection,$host,$username,$password)
+    private function __construct($connection,$host,array $credential)
     {
         $this->host=$host;
-        $this->username=$username;
-        $this->password=$password;
         $this->connection=$connection;
+        $this->HowAuthenticate($credential);
 
     }
 
@@ -74,20 +75,17 @@ class connection{
         }
 
 
-
-
-
-
     }
-    public function getSession(){
+    public function getSession($username,$password){
         $response=$this->makeRequest(static::POST_WITH_QUERY,static::LOGIN_URL,true,[
-            'auth' => [$this->username, $this->password],
+            'auth' => [$username, $password],
             "query"=>[
                 "~method"=>"post"
             ]
         ]);
 
         $this->session=((object)json_decode($response->getBody()))->value;
+        return true;
 
     }
     private function genApiRequestUri($path){
@@ -132,6 +130,22 @@ class connection{
     private function requestException($e)
     {
        throw $e;
+    }
+
+    private function HowAuthenticate(array $credential)
+    {
+        if(array_key_exists("username",$credential) && array_key_exists("password",$credential))
+        {
+            # get session with username and password
+            return $this->getSession($credential['username'],$credential['password']);
+        }
+        elseif(array_key_exists("Vmware-Api-Session-Id",$credential)){
+            return $this->session=$credential["Vmware-Api-Session-Id"];
+        }
+
+        return new CredentialException("required parameter you should send session-id or username-password for auth api ");
+
+
     }
 
 }
