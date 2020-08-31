@@ -26,25 +26,25 @@ Otherwise, You get the following error message:
 
 ### Credential
 ##### Username and password 
-so for authentication you can pass vcenter usernme and password as a array like this :
+For authentication you can pass vcenter username and password as an array like this:
 ```php
-new \vsphere\vmware("https://yourhost.com/",['userernamme'=>"your vcter username","pasword"=>"your vcnter password"],false);
+new \vsphere\vmware("https://yourhost.com/",['userernamme'=>"your vcenter username","password"=>"your vcenter password"],false);
 ```
 
 ##### sessionIdHeader 
 
-or you can easily get the session id from your vcenter and pass it to credential with key **Vmware-Api-Session-Id**
+Or simply get the Session ID from your vcenter then pass it out to credential by the following parameter: **Vmware-Api-Session-Id**
 ```php
 new \vsphere\vmware("https://yourhost.com/",['Vmware-Api-Session-Id'=>"e5560ccba5a622f4325cfcfb1991df0e"],false);
 ```
 
-i really recommand to use sessionIdHeader for authentication because it much more faster that username-password 
+I reccomend you to use sessionIdHeader for authentication purposes cause it's much faster than username-password auth.
 
-**NOTE** before using sessionIdHeader for authentication you should increase the expiration time in your vcnter
+**NOTE** before using sessionIdHeader for authentication you should increase the expiration time in your vcenter
 > for more information refer to documentation
 
 
-when you pass username and password to the vmware class it will use it to get session id from your vcenter and save it in **$session** in connection class
+When you pass username and password to the vmware class it will use it to get session id from your vcenter and save it in **$session** in connection class
 
 
 
