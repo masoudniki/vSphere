@@ -12,12 +12,10 @@ class connection{
     public $connection;
     public static $connectionInstance=null;
     private $host;
-    private $username;
-    private $password;
     public static function getInstance(\GuzzleHttp\Client $connection,$host,array $credential){
         if(static::$connectionInstance==null)
         {
-            static::$connectionInstance=new self($connection,$host,array $credential);
+            static::$connectionInstance=new self($connection,$host,$credential);
         }
         return static::$connectionInstance;
 
@@ -41,8 +39,6 @@ class connection{
                 "headers" => [
                     "Vmware-Api-Session-Id" => $this->session,
                     "Accept" => "application/json",
-
-
                 ]
             ];
 
@@ -143,7 +139,7 @@ class connection{
             return $this->session=$credential["Vmware-Api-Session-Id"];
         }
 
-        return new CredentialException("required parameter you should send session-id or username-password for auth api ");
+        throw new CredentialException("required parameter you should send session-id or username-password for auth api ");
 
 
     }

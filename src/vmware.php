@@ -10,7 +10,7 @@
         public function __construct($host,array $credential, $verifyCE)
         {
 
-            $this->connection=connection::getInstance(new Client(['verify'=>$verifyCE]),$host,array $credential);
+            $this->connection=connection::getInstance(new Client(['verify'=>$verifyCE]),$host,$credential);
 
         }
 
@@ -30,6 +30,9 @@
 
             return vm::makeVmInstance($this->connection,json_decode($object->getBody()),$VM);
 
+        }
+        public function getSessionId(){
+            return $this->connection->session;
         }
 
 
