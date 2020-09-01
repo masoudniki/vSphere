@@ -14,37 +14,37 @@ Create a php file and add the autoload.php
 <img  src="https://i.ibb.co/3BmmbLX/Screenshot-2020-08-27-18-59-48.png" alt="Screenshot-2020-08-27-18-59-48" border="0">
 </p>
 
-Then simply create an instance from VMware
+Then simply create an instance of VMware
 
 ```php
 $vcenter=new \vsphere\vmware("https://yourhost.com/",credential,false);
 ```
 ### Host
-First parameter you should pass to the VMware class make sure that your URL starts with HTTP or ends with HTTPS **/**
+First parameter you should pass to the VMware class, make sure that your URL starts with HTTP | HTTPS & ends with: **/**
 Otherwise, You get the following error message:
-> host not found
+> Host not found
 
 ### Credential
 ##### Username and password 
-For authentication you can pass vcenter username and password as an array like this:
+For authentication you can pass vCenter username and password as an array like this:
 ```php
 new \vsphere\vmware("https://yourhost.com/",['userernamme'=>"your vcenter username","password"=>"your vcenter password"],false);
 ```
 
 ##### sessionIdHeader 
 
-Or simply get the Session ID from your vcenter then pass it out to credential by the following parameter: **Vmware-Api-Session-Id**
+Or simply get the Session ID from your vCenter then pass it out to the credential by the following parameter: **Vmware-Api-Session-Id**
 ```php
 new \vsphere\vmware("https://yourhost.com/",['Vmware-Api-Session-Id'=>"e5560ccba5a622f4325cfcfb1991df0e"],false);
 ```
 
-I reccomend you to use sessionIdHeader for authentication purposes cause it's much faster than username-password auth.
+I reccomend you to use sessionIdHeader for authentication purposes, cause it's much faster than username-password auth.
 
 **NOTE** before using sessionIdHeader for authentication you should increase the expiration time in your vcenter
-> for more information refer to documentation
+> For more information refer to the documentation.
 
 
-When you pass username and password to the vmware class it will use it to get session id from your vcenter and save it in **$session** in connection class
+When you pass username and password to the VMware class, it will use it to get the Session ID from your vCenter and save it in **$session** in connection class.
 
 
 
