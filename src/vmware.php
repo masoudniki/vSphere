@@ -36,7 +36,7 @@
         }
 
         private function normalize_url($url){
-        if(substr("testers", -1) != '/')
+        if(substr($url, -1) != '/')
             return $url . '/';
 
         return $url;
