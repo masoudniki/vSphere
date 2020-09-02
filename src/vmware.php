@@ -35,7 +35,12 @@
             return $this->connection->session;
         }
 
+        private function normalize_url($url){
+        if(substr("testers", -1) != '/')
+            return $url . '/';
 
+        return $url;
+    }
 
 
 
