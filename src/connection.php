@@ -1,6 +1,5 @@
 <?php
 namespace vsphere;
-use vsphere\Exceptions\CredentialException;
 
 class connection{
     const LOGIN_URL = "com/vmware/cis/session";
@@ -62,6 +61,7 @@ class connection{
 
         $path=$this->genApiRequestUri($path);
         try{
+
             return $this->connection->request($method, $path, $options);
 
         }
@@ -99,6 +99,8 @@ class connection{
 
             case "GuzzleHttp\Exception\ClientException" : return $this->clientException($e);
 
+            case "GuzzleHttp\Exception\ServerException" : return $this->serverException($e);
+
         }
     }
 
@@ -107,13 +109,13 @@ class connection{
 
         switch ($e->getCode())
         {
-            case "503": throw new \vsphere\Exceptions\SystemException("system is unable to communicate with a service to complete the request",503);
+            case "503": throw new Exceptions\SystemException("system is unable to communicate with a service to complete the request",503);
 
-            case "404": throw new \vsphere\Exceptions\NotFoundException($e->getMessage(),404);
+            case "404": throw new Exceptions\NotFoundException($e->getMessage(),404);
 
-            case "403": throw new \vsphere\Exceptions\PrivilegeException("user doesn't have the required privileges.",404);
+            case "403": throw new Exceptions\PrivilegeException("user doesn't have the required privileges.",404);
 
-            case "401": throw new \vsphere\Exceptions\UnauthenticatedException($e->getMessage(),401);
+            case "401": throw new Exceptions\UnauthenticatedException($e->getMessage(),401);
 
             case "400": throw new \vsphere\Exceptions\UnauthenticatedException($e->getMessage(),400);
 
@@ -127,6 +129,17 @@ class connection{
     {
        throw $e;
     }
+    private function serverException($e){
+
+        switch ($e->getCode()){
+
+            case 500 : throw new Exceptions\ServerException();
+
+        }
+
+
+    }
+
 
     private function HowAuthenticate(array $credential)
     {
@@ -139,7 +152,7 @@ class connection{
             return $this->session=$credential["Vmware-Api-Session-Id"];
         }
 
-        throw new CredentialException("required parameter you should send session-id or username-password for auth api ");
+        throw new Exceptions\CredentialException("required parameter you should send session-id or username-password for auth api ");
 
 
     }
