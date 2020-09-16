@@ -23,7 +23,13 @@
 
 
         }
-        public function getVmByVm($VM,array $content=null){
+
+        /**
+         * @param $VM
+         * @param array|null $content
+         * @return vm
+         */
+        public function getVmByVm($VM, array $content=null){
 
             $object=$this->connection->makeRequest(self::GET,"vcenter/vm/$VM",false,$content);
 

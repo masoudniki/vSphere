@@ -5,7 +5,14 @@
         private $connection;
         public $vm;
         public static $instance=[];
-        public static function makeVmInstance(connection $connection,$properties,$vm=null){
+
+        /**
+         * @param connection $connection
+         * @param $properties
+         * @param null $vm
+         * @return array|mixed
+         */
+        public static function makeVmInstance(connection $connection, $properties, $vm=null){
             static::$instance=[];
 
             foreach ($properties as $items)
@@ -53,10 +60,14 @@
         }
 
         public function getVmStatus(){
-            return $this->connection->makeRequest(connection::GET,"/vcenter/vm/$this->vm/power",false);
+            $request=$this->connection->makeRequest(connection::GET,"/vcenter/vm/$this->vm/power",false);
+            return json_decode($request->getBody())->value->state;
         }
 
 
+        /**
+         * @return object|Response|boolean
+         */
         public function turnOffServer(){
             if($this->canUpdateVmStatus())
             {
@@ -72,6 +83,9 @@
         }
 
 
+        /**
+         * @return bool|Response
+         */
         public function resetServer(){
             if($this->canUpdateVmStatus())
             {
@@ -86,6 +100,9 @@
             return new Response("false",__METHOD__,"only when vm is power on is working",405);
         }
 
+        /**
+         * @return bool|Response
+         */
         public function turnOnServer(){
             if(!$this->canUpdateVmStatus())
             {
@@ -98,6 +115,10 @@
             }
             return new Response("false",__METHOD__,"only when vm is power off or suspend is working",405);
         }
+
+        /**
+         * @return bool|Response
+         */
         public function suspendServer(){
             if($this->canUpdateVmStatus()){
                 $this->power_state="SUSPENDED";
@@ -111,6 +132,10 @@
         }
 
 
+        /**
+         * @param string $state
+         * @return bool
+         */
         public function canUpdateVmStatus($state="POWERED_ON"){
             return $this->power_state===$state;
         }

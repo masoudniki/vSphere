@@ -133,7 +133,7 @@ class connection{
 
         switch ($e->getCode()){
 
-            case 500 : throw new Exceptions\ServerException();
+            case 500 :throw new Exceptions\ServerException();
 
         }
 
