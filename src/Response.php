@@ -9,12 +9,13 @@ class Response
     private $message;
     private $path;
     private $status;
-    public function __construct($status,$path,$message)
+    private $httpCode;
+    public function __construct($status,$path,$message,$httpCode)
     {
         $this->message=$message;
         $this->path=$path;
         $this->status=$status;
-
+        $this->httpCode=$httpCode;
     }
 
 
