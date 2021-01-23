@@ -7,11 +7,9 @@
         private $connection;
 
 
-        public function __construct($host,array $credential, $verifyCE)
+        public function __construct($host,array $credential,$options=['verify'=>false])
         {
-
-            $this->connection=connection::getInstance(new Client(['verify'=>$verifyCE]),$host,$credential);
-
+            $this->connection=connection::getInstance(new Client($options),$host,$credential);
         }
 
 
@@ -30,11 +28,8 @@
          * @return vm
          */
         public function getVmByVm($VM, array $content=null){
-
             $object=$this->connection->makeRequest(self::GET,"vcenter/vm/$VM",false,$content);
-
             return vm::makeVmInstance($this->connection,json_decode($object->getBody()),$VM);
-
         }
         public function getSessionId(){
             return $this->connection->session;

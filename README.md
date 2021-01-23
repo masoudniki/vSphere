@@ -17,20 +17,58 @@ create a php file and add autoload.php
 then simply create a instance from vmware
 
 ```php
-$vcenter=new \vsphere\vmware("https://yourhost.com/","your user name","and your password",false);
+$vcenter=new \vsphere\vmware(host,credential,option);
 ```
+# Required Parameter
 ### host
 first parameter you should pass to the vmware class make sure that your url start with http or https and end with **/**
 otherwise you get an error with this message 
 > host not found
+##credential
+### with username and password
+you can pass username and password in array for getting session id 
+```
+[
+    'username'=>'local@admin',
+    'password'=>'123456789'
+]
+```
+### with Vmware-Api-Session-Id
+increasing session timeout in vCenter and pass directly the session id 
+```
+[
+    'Vmware-Api-Session-Id'=>$sessionId
+]
+```
 
-### username and password
-the class use this parameter for get session id . after getting sessin id it will use it for authentication
-
-### verifyCE
+> for the first time you can pass username and password and then with **getSessionId()** method 
+# optional parameter
+### option
+pass array to set custom options for guzzle client 
 if your vcenter web client running with ssl you should pass **ture** otherwise you should pass **false**
-
+```
+$option=[
+    "verify"=>"false"
+]
+```
 > if you are using self signed certificate pass false to this parameter or pass the path of your certificate
+
+or you want to set timeout for requests
+```
+$option=[
+    'timeout'=>'40'
+]
+
+``` 
+
+or you want pass custom headers 
+```
+[
+    'headers'=>[
+        "X-My-Custom-Header"=>"some value"
+    ]
+]
+```
 
 
 

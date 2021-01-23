@@ -1,6 +1,8 @@
 <?php
 namespace vsphere;
 
+use vsphere\Exceptions\NullReturnedOrRequestTimedOut;
+
 class connection{
     const LOGIN_URL = "com/vmware/cis/session";
     const GET ="GET";
@@ -23,7 +25,7 @@ class connection{
 
     private function __construct($connection,$host,array $credential)
     {
-        $this->host=$host;
+        $this->host=$this->normalizeHostAddress($host);
         $this->connection=$connection;
         $this->HowAuthenticate($credential);
 
@@ -60,14 +62,17 @@ class connection{
         }
 
         $path=$this->genApiRequestUri($path);
+
         try{
-
-            return $this->connection->request($method, $path, $options);
-
+           $response=$this->connection->request($method, $path, $options);
+           if($response->getBody()==null)
+           {
+               throw new NullReturnedOrRequestTimedOut();
+           }
+           return $response;
         }
-        catch (\GuzzleHttp\Exception\GuzzleException $e) {
-
-            return $this->pareseException($e);
+        catch (\Exception $e) {
+           $this->parseException($e);
         }
 
 
@@ -79,19 +84,21 @@ class connection{
                 "~method"=>"post"
             ]
         ]);
-
         $this->session=((object)json_decode($response->getBody()))->value;
-        return true;
+        if($this->session==null){
+            throw new NullReturnedOrRequestTimedOut();
+        }
+        return $this->session;
 
     }
     private function genApiRequestUri($path){
 
-        return $this->host."rest".self::URL_SEPARATOR.$path;
+        return $this->host."/rest".self::URL_SEPARATOR.$path;
 
     }
 
 
-    private function pareseException($e){
+    private function parseException($e){
 
         switch (get_class($e))
         {
@@ -100,7 +107,7 @@ class connection{
             case "GuzzleHttp\Exception\ClientException" : return $this->clientException($e);
 
             case "GuzzleHttp\Exception\ServerException" : return $this->serverException($e);
-
+            default : throw $e;
         }
     }
 
@@ -113,7 +120,7 @@ class connection{
 
             case "404": throw new Exceptions\NotFoundException($e->getMessage(),404);
 
-            case "403": throw new Exceptions\PrivilegeException("user doesn't have the required privileges.",404);
+            case "403": throw new Exceptions\PrivilegeException("user doesn't have the required privileges.",403);
 
             case "401": throw new Exceptions\UnauthenticatedException($e->getMessage(),401);
 
@@ -145,16 +152,21 @@ class connection{
     {
         if(array_key_exists("username",$credential) && array_key_exists("password",$credential))
         {
-            # get session with username and password
             return $this->getSession($credential['username'],$credential['password']);
         }
         elseif(array_key_exists("Vmware-Api-Session-Id",$credential)){
             return $this->session=$credential["Vmware-Api-Session-Id"];
         }
-
         throw new Exceptions\CredentialException("required parameter you should send session-id or username-password for auth api ");
 
 
+    }
+    private function normalizeHostAddress($address){
+        $httpOrHttps="/^https?:\/\//";
+        if(!preg_match($httpOrHttps,$address)){
+            return $address="https://".$address;
+        }
+        return $address;
     }
 
 }

@@ -14,9 +14,9 @@
          */
         public static function makeVmInstance(connection $connection, $properties, $vm=null){
             static::$instance=[];
-
             foreach ($properties as $items)
             {
+
                 if(gettype($items)=="array")
                 {
                     foreach ($items as $item)
@@ -25,6 +25,7 @@
                     }
                 }
                 else{
+
                         static::$instance[]=new static($connection,$items,$vm);
                     }
 
@@ -60,7 +61,7 @@
         }
 
         public function getVmStatus(){
-            $request=$this->connection->makeRequest(connection::GET,"/vcenter/vm/$this->vm/power",false);
+            $request=$this->connection->makeRequest(connection::GET,"vcenter/vm/$this->vm/power",false);
             return json_decode($request->getBody())->value->state;
         }
 
@@ -72,7 +73,7 @@
             if($this->canUpdateVmStatus())
             {
                 $this->power_state="POWERED_OFF";
-                $response=$this->connection->makeRequest(connection::POST,"/vcenter/vm/$this->vm/power/stop",false);
+                $response=$this->connection->makeRequest(connection::POST,"vcenter/vm/$this->vm/power/stop",false);
                 if((string) $response->getBody() === '' &&  $response->getStatusCode() >= 200 && $response->getStatusCode() < 300 ){
                     return new Response("true",__METHOD__,"operation was successful",$response->getStatusCode());
                 }
@@ -90,7 +91,7 @@
             if($this->canUpdateVmStatus())
             {
                 $this->power_state="POWERED_ON";
-                $response=$this->connection->makeRequest(connection::POST,"/vcenter/vm/$this->vm/power/reset",false);
+                $response=$this->connection->makeRequest(connection::POST,"vcenter/vm/$this->vm/power/reset",false);
                 if((string) $response->getBody() === '' &&  $response->getStatusCode() >= 200 && $response->getStatusCode() < 300){
                     return new Response("true",__METHOD__,"operation was successful",$response->getStatusCode());
                 }
@@ -107,13 +108,14 @@
             if(!$this->canUpdateVmStatus())
             {
                 $this->power_state="POWERED_ON";
-                $response=$this->connection->makeRequest(connection::POST,"/vcenter/vm/$this->vm/power/start",false);
+                $response=$this->connection->makeRequest(connection::POST,"vcenter/vm/$this->vm/power/start",false);
                 if((string) $response->getBody() === '' &&  $response->getStatusCode() >= 200 && $response->getStatusCode() < 300){
                     return new Response("true",__METHOD__,"operation was successful",$response->getStatusCode());
                 }
                 return false;
             }
-            return new Response("false",__METHOD__,"only when vm is power off or suspend is working",405);
+
+            return new Response(false,__METHOD__,"only when vm is power off or suspend is working",405);
         }
 
         /**
@@ -122,7 +124,7 @@
         public function suspendServer(){
             if($this->canUpdateVmStatus()){
                 $this->power_state="SUSPENDED";
-                $response= $this->connection->makeRequest(connection::POST,"/vcenter/vm/$this->vm/power/suspend",false);
+                $response= $this->connection->makeRequest(connection::POST,"vcenter/vm/$this->vm/power/suspend",false);
                 if((string) $response->getBody() === '' &&  $response->getStatusCode() >= 200 && $response->getStatusCode() < 300){
                     return new Response("true",__METHOD__,"operation was successful",$response->getStatusCode());
                 }
@@ -142,12 +144,3 @@
 
 
     }
-
-
-
-
-
-
-?>
-
-
