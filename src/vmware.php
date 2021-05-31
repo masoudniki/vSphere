@@ -7,7 +7,7 @@
         private $connection;
 
 
-        public function __construct($host,array $credential,$options=['verify'=>false],$singleton=fasle)
+        public function __construct($host,array $credential,$options=['verify'=>false],$singleton=false)
         {
             $this->connection=connection::getInstance(new Client($options),$host,$credential,$singleton);
         }
