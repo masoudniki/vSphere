@@ -7,9 +7,9 @@
         private $connection;
 
 
-        public function __construct($host,array $credential,$options=['verify'=>false])
+        public function __construct($host,array $credential,$options=['verify'=>false],$singleton=fasle)
         {
-            $this->connection=connection::getInstance(new Client($options),$host,$credential);
+            $this->connection=connection::getInstance(new Client($options),$host,$credential,$singleton);
         }
 
 

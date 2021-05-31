@@ -19,7 +19,9 @@
   "require": {
     "php": "^7.2.5",
     "ext-json": "*",
-    "guzzlehttp/guzzle": "^7.0",
+    "guzzlehttp/guzzle": "^7.0"
+  },
+  "require-dev": {
     "larapack/dd": "^1.1"
   }
 }

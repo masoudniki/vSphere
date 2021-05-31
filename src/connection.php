@@ -1,6 +1,7 @@
 <?php
 namespace vsphere;
 
+use GuzzleHttp\Client;
 use vsphere\Exceptions\NullReturnedOrRequestTimedOut;
 
 class connection{
@@ -13,9 +14,12 @@ class connection{
     public $connection;
     public static $connectionInstance=null;
     private $host;
-    public static function getInstance(\GuzzleHttp\Client $connection,$host,array $credential){
-        if(static::$connectionInstance==null)
+    public static function getInstance(Client $connection, $host, array $credential, $singleton){
+        if($singleton and static::$connectionInstance==null)
         {
+            static::$connectionInstance=new self($connection,$host,$credential);
+        }
+        elseif(!$singleton){
             static::$connectionInstance=new self($connection,$host,$credential);
         }
         return static::$connectionInstance;
@@ -28,7 +32,6 @@ class connection{
         $this->host=$this->normalizeHostAddress($host);
         $this->connection=$connection;
         $this->HowAuthenticate($credential);
-
     }
 
 
