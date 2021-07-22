@@ -24,7 +24,9 @@ $vcenter=new \vsphere\vmware(host,credential,option);
 first parameter you should pass to the vmware class make sure that your url start with http or https and end with **/**
 otherwise you get an error with this message 
 > host not found
-##credential
+
+
+## credential
 ### with username and password
 you can pass username and password in array for getting session id 
 ```
@@ -33,7 +35,7 @@ you can pass username and password in array for getting session id
     'password'=>'123456789'
 ]
 ```
-### with Vmware-Api-Session-Id
+### or with Vmware-Api-Session-Id
 increasing session timeout in vCenter and pass directly the session id 
 ```
 [
