@@ -43,7 +43,7 @@ increasing session timeout in vCenter and pass directly the session id
 ]
 ```
 
-> for the first time you can pass username and password and then with **getSessionId()** method 
+> for the first time you can pass username and password and then get the session with **getSessionId()** method 
 # optional parameter
 ### option
 pass array to set custom options for guzzle client 
