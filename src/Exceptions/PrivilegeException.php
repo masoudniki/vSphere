@@ -1,7 +1,7 @@
 <?php
 
 
-namespace vsphere\Exceptions;
+namespace FNDEV\vShpare\Exceptions;
 
 
 class PrivilegeException extends \Exception
