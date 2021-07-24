@@ -14,7 +14,7 @@
     }
   ],
   "autoload": {
-    "psr-4": {"FNDEV\\vShpare": "src/"}
+    "psr-4": {"FNDEV\\vShpare\\": "src/"}
   },
   "require": {
     "php": "^7.4",

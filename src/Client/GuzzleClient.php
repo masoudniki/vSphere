@@ -5,8 +5,9 @@ namespace FNDEV\vShpare\Client;
 
 use FNDEV\vShpare\VmwareApiClient;
 use FNDEV\vShpare\Auth\SessionHandler;
+use GuzzleHttp\Client;
 
-class GuzzleClient
+class GuzzleClient extends Client
 {
     public function __construct(VmwareApiClient $client,array $config = [])
     {
@@ -20,6 +21,7 @@ class GuzzleClient
             ],
         ], $config);
         parent::__construct($guzzleConfig);
+
     }
 
 }

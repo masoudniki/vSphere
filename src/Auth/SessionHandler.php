@@ -17,12 +17,18 @@ class SessionHandler
         $HttpClient=new Client(
             [
                 "verify"=>$client->ssl,
-                "Content-Type"=>"application/x-www-form-urlencoded",
-                "Accept" => "application/json",
-                "Authorization"=>"Basic ".self::convertCredentials($client->credential)
+                "headers"=>[
+                    "Content-Type"=>"application/x-www-form-urlencoded",
+                    "Accept" => "application/json",
+                    "Authorization"=>"Basic ".self::convertCredentials($client->credential)
+                ]
             ]
         );
-        $response=$HttpClient->request('GET',$client->getAuthUrl(),["~method"=>"post"]);
+        $response=$HttpClient->request('GET',$client->getAuthUrl(),[
+            "query"=>[
+                "~method"=>"post"
+            ]
+        ]);
         return json_decode($response->getBody())->value;
     }
     public static function isSessionExist($credential){

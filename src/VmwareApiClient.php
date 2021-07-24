@@ -11,7 +11,7 @@
         public $authUrl;
         public $protocol;
 
-        public function __construct($host,$port=443,array $credential,$ssl=false,$protocol="https",$baseurl="/api/vcenter",$authurl="/com/vmware/cis/session",?Client $client=null)
+        public function __construct($host,$port=443,array $credential,$ssl=false,$protocol="https",$baseurl="/api/vcenter",$authurl="/rest/com/vmware/cis/session",?Client $client=null)
         {
             $this->host=$host;
             $this->port=$port;
@@ -21,7 +21,12 @@
             $this->authUrl=$authurl;
             $this->protocol=$protocol;
             $this->HttpClient=$client??new GuzzleClient($this);
+
         }
+        public function VM(){
+            return new Api\VM\VM($this->HttpClient);
+        }
+
         public function getHttpClient(){
             return $this->HttpClient;
         }

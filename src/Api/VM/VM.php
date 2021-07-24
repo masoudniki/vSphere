@@ -7,17 +7,17 @@ use vsphere\manageVmObjects;
 
 class VM
 {
-    public Client $httpClient;
+    public Client $HttpClient;
     public function __construct(Client $client)
     {
-        $this->httpClient=$client;
+        $this->HttpClient=$client;
     }
-    public function allVms(array $content=null){
-        $vms=$this->httpClient->get();
+    public function all(array $query=null){
+        $vms=$this->HttpClient->get("");
         return new manageVmObjects(json_decode($vms->getBody()),$this->connection);
     }
-    public function vmByMoId($VM, array $content=null){
-        $response=$this->httpClient->get("vcenter/vm/$VM",false,$content);
+    public function byMoId($moid, array $query=[]){
+        $response=$this->HttpClient->get("vcenter/vm/$moid",[],$query);
         return \vsphere\vm::makeVmInstance($this->connection,$response,$VM);
     }
 }
