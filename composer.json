@@ -14,10 +14,10 @@
     }
   ],
   "autoload": {
-    "psr-4": {"vsphere\\": "src/"}
+    "psr-4": {"FNDEV\\vShpare": "src/"}
   },
   "require": {
-    "php": "^7.2.5",
+    "php": "^7.4",
     "ext-json": "*",
     "guzzlehttp/guzzle": "^7.0"
   },

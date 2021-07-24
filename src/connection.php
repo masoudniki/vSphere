@@ -23,18 +23,13 @@ class connection{
             static::$connectionInstance=new self($connection,$host,$credential);
         }
         return static::$connectionInstance;
-
-
     }
-
     private function __construct($connection,$host,array $credential)
     {
         $this->host=$this->normalizeHostAddress($host);
         $this->connection=$connection;
         $this->HowAuthenticate($credential);
     }
-
-
     public function makeRequest($method,$path,$custom,array $content=null)
     {
         $options=[];
@@ -63,9 +58,7 @@ class connection{
             }
 
         }
-
         $path=$this->genApiRequestUri($path);
-
         try{
            $response=$this->connection->request($method, $path, $options);
            if($response->getBody()==null)
@@ -99,10 +92,7 @@ class connection{
         return $this->host."/rest".self::URL_SEPARATOR.$path;
 
     }
-
-
     private function parseException($e){
-
         switch (get_class($e))
         {
             case "GuzzleHttp\Exception\RequestException" :return $this->requestException($e);
@@ -113,7 +103,6 @@ class connection{
             default : throw $e;
         }
     }
-
     private function clientException($e)
     {
 
@@ -123,7 +112,7 @@ class connection{
 
             case "404": throw new Exceptions\NotFoundException($e->getMessage(),404);
 
-            case "403": throw new Exceptions\PrivilegeException("user doesn't have the required privileges.",403);
+            case "403": throw new Exceptions\PrivilegeException("user doesn't have the required privileges",403);
 
             case "401": throw new Exceptions\UnauthenticatedException($e->getMessage(),401);
 
@@ -140,17 +129,12 @@ class connection{
        throw $e;
     }
     private function serverException($e){
-
         switch ($e->getCode()){
-
             case 500 :throw new Exceptions\ServerException();
-
         }
 
 
     }
-
-
     private function HowAuthenticate(array $credential)
     {
         if(array_key_exists("username",$credential) && array_key_exists("password",$credential))
@@ -161,8 +145,6 @@ class connection{
             return $this->session=$credential["Vmware-Api-Session-Id"];
         }
         throw new Exceptions\CredentialException("required parameter you should send session-id or username-password for auth api ");
-
-
     }
     private function normalizeHostAddress($address){
         $httpOrHttps="/^https?:\/\//";
