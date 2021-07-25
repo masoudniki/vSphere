@@ -5,29 +5,6 @@
         private $connection;
         public $vm;
         public static $instance=[];
-        public static function makeVmInstance(connection $connection, $properties, $vm=null){
-            static::$instance=[];
-            foreach ($properties as $items)
-            {
-
-                if(gettype($items)=="array")
-                {
-                    foreach ($items as $item)
-                    {
-                        static::$instance[]=new static($connection,$item,$vm);
-                    }
-                }
-                else{
-
-                        static::$instance[]=new static($connection,$items,$vm);
-                    }
-
-            }
-            return (count(static::$instance)==1) ? static::$instance[0] :static::$instance;
-
-        }
-
-
         private function __construct(connection $connection,$items,$vm=null)
         {
             $this->connection=$connection;

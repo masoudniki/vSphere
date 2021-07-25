@@ -11,7 +11,7 @@
         public $authUrl;
         public $protocol;
 
-        public function __construct($host,$port=443,array $credential,$ssl=false,$protocol="https",$baseurl="/api/vcenter",$authurl="/rest/com/vmware/cis/session",?Client $client=null)
+        public function __construct($host,$port=443,array $credential,$ssl=false,$protocol="https",$baseurl="/rest/vcenter",$authurl="/rest/com/vmware/cis/session",?Client $client=null)
         {
             $this->host=$host;
             $this->port=$port;

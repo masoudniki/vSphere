@@ -3,6 +3,7 @@
 
 namespace FNDEV\vShpare\Api\VM;
 use GuzzleHttp\Client;
+use vsphere\connection;
 use vsphere\manageVmObjects;
 
 class VM
@@ -13,11 +14,11 @@ class VM
         $this->HttpClient=$client;
     }
     public function all(array $query=null){
-        $vms=$this->HttpClient->get("");
-        return new manageVmObjects(json_decode($vms->getBody()),$this->connection);
+        $response=$this->HttpClient->get("vm",[],$query);
+        return new ManageVms(json_decode($response->getBody()),$this->HttpClient);
     }
     public function byMoId($moid, array $query=[]){
-        $response=$this->HttpClient->get("vcenter/vm/$moid",[],$query);
-        return \vsphere\vm::makeVmInstance($this->connection,$response,$VM);
+        $response=$this->HttpClient->get("vm/$moid",[],$query);
+        return new VmSource($this->HttpClient,json_decode($response->getBody()),$moid);
     }
 }
