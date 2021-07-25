@@ -4,6 +4,7 @@
 namespace FNDEV\vShpare\Api\VM;
 
 
+use FNDEV\vShpare\Api\VM\GuestPower\GuestPower;
 use FNDEV\vShpare\Api\VM\Power\Power;
 use FNDEV\vShpare\ApiResponse;
 use GuzzleHttp\Client;
@@ -33,6 +34,9 @@ class VmSource
     }
     public function power(){
         return new Power($this->HttpClient,$this);
+    }
+    public function guestPower(){
+        return new GuestPower($this->HttpClient);
     }
     public function isPoweredOn(){
         return $this->properties->power_state==self::POWERED_ON;
