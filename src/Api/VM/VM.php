@@ -2,6 +2,7 @@
 
 
 namespace FNDEV\vShpare\Api\VM;
+use FNDEV\vShpare\Api\VM\ConsoleTickets\ConsoleTickets;
 use FNDEV\vShpare\Api\VM\GuestPower\GuestPower;
 use FNDEV\vShpare\Api\VM\Power\Power;
 use FNDEV\vShpare\Api\VM\Tools\Tools;
@@ -22,6 +23,9 @@ class VM
     }
     public function tools(){
         return new Tools($this->HttpClient);
+    }
+    public function consoleTicket(){
+        return new ConsoleTickets($this->HttpClient);
     }
     public function all(array $query=null){
         $response=$this->HttpClient->get("vm",[],$query);
