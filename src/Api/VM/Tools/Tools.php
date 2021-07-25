@@ -14,15 +14,27 @@ use GuzzleHttp\RequestOptions;
 class Tools extends InitClass
 {
     use MOID;
+
+    /**
+     * Get the properties of VMware Tools.
+     */
     public function tools($moid=null){
         return ApiResponse::BodyResponse($this->HttpClient->get("vm/{$this->getMoid()}/tools"));
     }
+
+    /**
+     * Update the properties of VMware Tools.
+     */
     public function updateTools(array $body,$moid=null){
         return ApiResponse::BodyResponse($this->HttpClient->patch("vm/{$this->getMoid()}/tools",[
             RequestOptions::JSON=>$body
         ]));
     }
-    public function upgradeTools($body,$moid=null){
+
+    /**
+     * Begins the Tools upgrade process. To monitor the status of the Tools upgrade, clients should check the Tools status by calling Tools.get and examining Tools.Info.version-status and Tools.Info.run-state.
+     */
+    public function upgradeTools($body, $moid=null){
         return ApiResponse::BodyResponse($this->HttpClient->post("vm/{$this->getMoid()}/tools",[
             "query"=>[
               "action"=>"upgrade"
