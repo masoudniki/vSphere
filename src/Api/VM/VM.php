@@ -2,6 +2,7 @@
 
 
 namespace FNDEV\vShpare\Api\VM;
+use FNDEV\vShpare\Api\VM\GuestPower\GuestPower;
 use FNDEV\vShpare\Api\VM\Power\Power;
 use GuzzleHttp\Client;
 
@@ -14,6 +15,9 @@ class VM
     }
     public function power(){
         return new Power($this->HttpClient);
+    }
+    public function guestPower(){
+        return new GuestPower($this->HttpClient);
     }
     public function all(array $query=null){
         $response=$this->HttpClient->get("vm",[],$query);

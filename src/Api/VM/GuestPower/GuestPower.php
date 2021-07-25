@@ -4,12 +4,14 @@
 namespace FNDEV\vShpare\Api\VM\GuestPower;
 
 
+use FNDEV\vShpare\Api\VM\Traits\MOID;
 use FNDEV\vShpare\Api\VM\VmSource;
 use FNDEV\vShpare\ApiResponse;
 use GuzzleHttp\Client;
 
 class GuestPower
 {
+    use MOID;
     public Client $HttpClient;
     public ?VmSource $vmSource;
     public function __construct(Client $HttpClient,?VmSource $vmSource=null)

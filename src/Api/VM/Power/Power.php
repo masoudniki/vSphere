@@ -4,12 +4,14 @@
 namespace FNDEV\vShpare\Api\VM\Power;
 
 
+use FNDEV\vShpare\Api\VM\Traits\MOID;
 use FNDEV\vShpare\Api\VM\VmSource;
 use FNDEV\vShpare\ApiResponse;
 use GuzzleHttp\Client;
 
 class Power
 {
+    use MOID;
     public Client $HttpClient;
     public ?VmSource $vmSource;
     public function __construct(Client $HttpClient,?VmSource $vmSource=null)
@@ -46,12 +48,5 @@ class Power
      */
     public function suspend($moid=null){
         return !ApiResponse::HasError($this->HttpClient->post("vm/{$this->getMoid($moid)}/power/suspend"));
-    }
-    public function getMoid($moid=null){
-        if($moid)
-            return $moid;
-        if($this->vmSource && isset($this->vmSource->moid))
-            return $this->vmSource->moid;
-        throw new \InvalidArgumentException("provide moid or pass vmSource object");
     }
 }

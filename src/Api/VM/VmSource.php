@@ -36,7 +36,7 @@ class VmSource
         return new Power($this->HttpClient,$this);
     }
     public function guestPower(){
-        return new GuestPower($this->HttpClient);
+        return new GuestPower($this->HttpClient,$this);
     }
     public function isPoweredOn(){
         return $this->properties->power_state==self::POWERED_ON;
