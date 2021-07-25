@@ -4,21 +4,15 @@
 namespace FNDEV\vShpare\Api\VM\Power;
 
 
+use FNDEV\vShpare\Api\VM\Abstracts\InitClass;
 use FNDEV\vShpare\Api\VM\Traits\MOID;
 use FNDEV\vShpare\Api\VM\VmSource;
 use FNDEV\vShpare\ApiResponse;
 use GuzzleHttp\Client;
 
-class Power
+class Power extends InitClass
 {
     use MOID;
-    public Client $HttpClient;
-    public ?VmSource $vmSource;
-    public function __construct(Client $HttpClient,?VmSource $vmSource=null)
-    {
-        $this->HttpClient=$HttpClient;
-        $this->vmSource=$vmSource;
-    }
     /**
      * Returns the power state information of a virtual machine
      */
