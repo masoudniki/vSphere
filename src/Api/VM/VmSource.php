@@ -4,6 +4,7 @@
 namespace FNDEV\vShpare\Api\VM;
 
 
+use FNDEV\vShpare\Api\VM\Power\Power;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Response;
 
@@ -25,16 +26,8 @@ class VmSource
     {
         return $this->properties->$name;
     }
-    public function powerState(){
-        return $this->properties->power_state;
+    public function power(){
+        return new Power();
     }
-    public function isPoweredOn(){
-        return $this->properties->power_state==self::POWERED_ON;
-    }
-    public function isPoweredOff(){
-        return $this->properties->power_state==self::POWERED_OFF;
-    }
-    public function isSuspended(){
-        return $this->properties->power_state==self::SUSPENDED;
-    }
+
 }

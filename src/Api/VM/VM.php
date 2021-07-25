@@ -2,6 +2,7 @@
 
 
 namespace FNDEV\vShpare\Api\VM;
+use FNDEV\vShpare\Api\VM\Power\Power;
 use GuzzleHttp\Client;
 use vsphere\connection;
 use vsphere\manageVmObjects;
@@ -12,6 +13,9 @@ class VM
     public function __construct(Client $client)
     {
         $this->HttpClient=$client;
+    }
+    public function power(){
+        return new Power($this->HttpClient);
     }
     public function all(array $query=null){
         $response=$this->HttpClient->get("vm",[],$query);
