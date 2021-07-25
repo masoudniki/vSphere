@@ -6,6 +6,7 @@ namespace FNDEV\vShpare\Api\VM;
 
 use FNDEV\vShpare\Api\VM\ConsoleTickets\ConsoleTickets;
 use FNDEV\vShpare\Api\VM\GuestPower\GuestPower;
+use FNDEV\vShpare\Api\VM\Hardware\Hardware;
 use FNDEV\vShpare\Api\VM\Power\Power;
 use FNDEV\vShpare\Api\VM\Tools\Tools;
 use FNDEV\vShpare\ApiResponse;
@@ -45,6 +46,9 @@ class VmSource
     }
     public function consoleTicket(){
         return new ConsoleTickets($this->HttpClient,$this);
+    }
+    public function hardWare(){
+        return new Hardware($this->HttpClient,$this);
     }
     public function isPoweredOn(){
         return $this->properties->power_state==self::POWERED_ON;
