@@ -4,7 +4,7 @@
     use FNDEV\vShpare\Api\VM\Traits\IterableObject;
     use GuzzleHttp\Psr7\Response;
 
-    class ManageVms{
+    class ManageVms implements \Iterator {
         use IterableObject;
         private $items=[];
         private $position=0;
@@ -13,8 +13,8 @@
             $this->parseObjects($vms,$HttpClient);
         }
         public function parseObjects($vms,$HttpClient){
-            foreach ($vms as $VmProperties){
-                $this->items[]=new VmSource($HttpClient,$VmProperties,$VmProperties->vm);
+            foreach ($vms->value as $VmProperties){
+                array_push($this->items,new VmSource($HttpClient,$VmProperties,$VmProperties->vm));
             }
         }
         public function first(){

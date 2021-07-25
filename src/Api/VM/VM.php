@@ -4,8 +4,6 @@
 namespace FNDEV\vShpare\Api\VM;
 use FNDEV\vShpare\Api\VM\Power\Power;
 use GuzzleHttp\Client;
-use vsphere\connection;
-use vsphere\manageVmObjects;
 
 class VM
 {

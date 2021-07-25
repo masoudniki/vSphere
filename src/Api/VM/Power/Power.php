@@ -5,8 +5,8 @@ namespace FNDEV\vShpare\Api\VM\Power;
 
 
 use FNDEV\vShpare\Api\VM\VmSource;
+use FNDEV\vShpare\ApiResponse;
 use GuzzleHttp\Client;
-use http\Exception\InvalidArgumentException;
 
 class Power
 {
@@ -21,37 +21,37 @@ class Power
      * Returns the power state information of a virtual machine
      */
     public function power($moid=null){
-        return $this->HttpClient->get("vm/{$this->getMoid()}/power");
+        return ApiResponse::BodyResponse($this->HttpClient->get("vm/{$this->getMoid($moid)}/power"));
     }
     /**
      * Returns the power state information of a virtual machine
      */
     public function powerOff($moid=null){
-        return $this->HttpClient->post("vm/{$this->getMoid()}/stop");
+        return !ApiResponse::HasError($this->HttpClient->post("vm/{$this->getMoid($moid)}/power/stop"));
     }
     /**
      * Powers on a powered-off or suspended virtual machine
      */
     public function powerOn($moid=null){
-        return $this->HttpClient->post("vm/{$this->getMoid()}/start");
+        return !ApiResponse::HasError($this->HttpClient->post("vm/{$this->getMoid($moid)}/power/start"));
     }
     /**
      * Resets a powered-on virtual machine
      */
     public function reset($moid=null){
-        return $this->HttpClient->post("vm/{$this->getMoid()}/reset");
+        return !ApiResponse::HasError($this->HttpClient->post("vm/{$this->getMoid($moid)}/power/reset"));
     }
     /**
      * Returns the power state information of a virtual machine
      */
     public function suspend($moid=null){
-        return $this->HttpClient->post("vm/{$this->getMoid()}/suspend");
+        return !ApiResponse::HasError($this->HttpClient->post("vm/{$this->getMoid($moid)}/power/suspend"));
     }
     public function getMoid($moid=null){
         if($moid)
             return $moid;
         if($this->vmSource && isset($this->vmSource->moid))
-            $this->vmSource->moid;
-        throw new InvalidArgumentException("provide moid or pass vmSource object");
+            return $this->vmSource->moid;
+        throw new \InvalidArgumentException("provide moid or pass vmSource object");
     }
 }
