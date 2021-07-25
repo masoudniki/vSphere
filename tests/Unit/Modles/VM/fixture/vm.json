@@ -1,0 +1,207 @@
+{
+  "value": {
+    "hardware": {
+      "upgrade_error": "string",
+      "version": "VMX_03",
+      "upgrade_policy": "NEVER",
+      "upgrade_status": "NONE",
+      "upgrade_version": "VMX_03"
+    },
+    "floppies": [
+      {
+        "key": "string",
+        "value": {
+          "start_connected": true,
+          "backing": {
+            "image_file": "string",
+            "host_device": "string",
+            "type": "IMAGE_FILE",
+            "auto_detect": true
+          },
+          "allow_guest_control": true,
+          "state": "CONNECTED",
+          "label": "string"
+        }
+      }
+    ],
+    "cpu": {
+      "cores_per_socket": 0,
+      "hot_remove_enabled": true,
+      "count": 0,
+      "hot_add_enabled": true
+    },
+    "boot_devices": [
+      {
+        "disks": [
+          "string"
+        ],
+        "nic": "string",
+        "type": "CDROM"
+      }
+    ],
+    "memory": {
+      "hot_add_increment_size_MiB": 0,
+      "hot_add_enabled": true,
+      "hot_add_limit_MiB": 0,
+      "size_MiB": 0
+    },
+    "nics": [
+      {
+        "key": "string",
+        "value": {
+          "mac_type": "MANUAL",
+          "start_connected": true,
+          "upt_compatibility_enabled": true,
+          "wake_on_lan_enabled": true,
+          "label": "string",
+          "allow_guest_control": true,
+          "backing": {
+            "distributed_port": "string",
+            "host_device": "string",
+            "network": "string",
+            "distributed_switch_uuid": "string",
+            "opaque_network_id": "string",
+            "network_name": "string",
+            "connection_cookie": 0,
+            "type": "STANDARD_PORTGROUP",
+            "opaque_network_type": "string"
+          },
+          "mac_address": "string",
+          "pci_slot_number": 0,
+          "type": "E1000",
+          "state": "CONNECTED"
+        }
+      }
+    ],
+    "guest_OS": "DOS",
+    "cdroms": [
+      {
+        "key": "string",
+        "value": {
+          "start_connected": true,
+          "sata": {
+            "bus": 0,
+            "unit": 0
+          },
+          "state": "CONNECTED",
+          "backing": {
+            "device_access_type": "EMULATION",
+            "host_device": "string",
+            "iso_file": "string",
+            "type": "ISO_FILE",
+            "auto_detect": true
+          },
+          "allow_guest_control": true,
+          "ide": {
+            "master": true,
+            "primary": true
+          },
+          "label": "string",
+          "type": "IDE"
+        }
+      }
+    ],
+    "disks": [
+      {
+        "key": "string",
+        "value": {
+          "capacity": 0,
+          "sata": {
+            "bus": 0,
+            "unit": 0
+          },
+          "backing": {
+            "vmdk_file": "string",
+            "type": "VMDK_FILE"
+          },
+          "label": "string",
+          "ide": {
+            "master": true,
+            "primary": true
+          },
+          "type": "IDE",
+          "scsi": {
+            "bus": 0,
+            "unit": 0
+          }
+        }
+      }
+    ],
+    "scsi_adapters": [
+      {
+        "key": "string",
+        "value": {
+          "sharing": "NONE",
+          "scsi": {
+            "bus": 0,
+            "unit": 0
+          },
+          "pci_slot_number": 0,
+          "type": "BUSLOGIC",
+          "label": "string"
+        }
+      }
+    ],
+    "name": "string",
+    "parallel_ports": [
+      {
+        "key": "string",
+        "value": {
+          "start_connected": true,
+          "backing": {
+            "auto_detect": true,
+            "host_device": "string",
+            "type": "FILE",
+            "file": "string"
+          },
+          "allow_guest_control": true,
+          "state": "CONNECTED",
+          "label": "string"
+        }
+      }
+    ],
+    "serial_ports": [
+      {
+        "key": "string",
+        "value": {
+          "start_connected": true,
+          "yield_on_poll": true,
+          "state": "CONNECTED",
+          "label": "string",
+          "allow_guest_control": true,
+          "backing": {
+            "proxy": "string",
+            "host_device": "string",
+            "auto_detect": true,
+            "network_location": "string",
+            "no_rx_loss": true,
+            "type": "FILE",
+            "pipe": "string",
+            "file": "string"
+          }
+        }
+      }
+    ],
+    "power_state": "POWERED_OFF",
+    "sata_adapters": [
+      {
+        "key": "string",
+        "value": {
+          "bus": 0,
+          "pci_slot_number": 0,
+          "type": "AHCI",
+          "label": "string"
+        }
+      }
+    ],
+    "boot": {
+      "retry": true,
+      "enter_setup_mode": true,
+      "efi_legacy_boot": true,
+      "retry_delay": 0,
+      "type": "BIOS",
+      "delay": 0,
+      "network_protocol": "IPV4"
+    }
+  }
+}
