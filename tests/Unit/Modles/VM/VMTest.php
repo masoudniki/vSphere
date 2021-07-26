@@ -5,7 +5,11 @@ namespace FNDEV\Tests\Unit\Modles\VM;
 
 
 use FNDEV\Tests\TestCase;
+use FNDEV\vShpare\Api\VM\ConsoleTickets\ConsoleTickets;
+use FNDEV\vShpare\Api\VM\Hardware\Hardware;
 use FNDEV\vShpare\Api\VM\ManageVms;
+use FNDEV\vShpare\Api\VM\Power\Power;
+use FNDEV\vShpare\Api\VM\Tools\Tools;
 use FNDEV\vShpare\Api\VM\VM;
 use FNDEV\vShpare\Api\VM\VmSource;
 use GuzzleHttp\Psr7\Response;
@@ -29,6 +33,24 @@ class VMTest extends TestCase
         $vmManager=$this->vm->all();
         $this->assertInstanceOf(ManageVms::class,$vmManager);
         $this->assertLastRequestEquals("GET","/vm");
+        $this->assertCount(4, $vmManager);
+        $this->assertInstanceOf(VmSource::class,$vmManager->first());
+    }
+    public function test_get_power_accessor(){
+        $powerAccessor=$this->vm->power();
+        $this->assertInstanceOf(Power::class,$powerAccessor);
+    }
+    public function test_get_tools_accessor(){
+        $toolsAccessor=$this->vm->tools();
+        $this->assertInstanceOf(Tools::class,$toolsAccessor);
+    }
+    public function test_get_hardware_accessor(){
+        $hardware=$this->vm->hardWare();
+        $this->assertInstanceOf(Hardware::class,$hardware);
+    }
+    public function test_get_console_ticket_accessor(){
+        $consoleTicket=$this->vm->consoleTicket();
+        $this->assertInstanceOf(ConsoleTickets::class,$consoleTicket);
     }
 
 }

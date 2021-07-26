@@ -2,3 +2,4 @@
 /vendor
 composer.lock
 MainController.php
+.phpunit.result.cache
