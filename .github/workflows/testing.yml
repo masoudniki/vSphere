@@ -12,7 +12,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Install extentions
-      run: sudo apt install php-http,php-pecl-http
+      run: sudo apt install php-http php-pecl-http
     - name: Setup PHP
       uses: shivammathur/setup-php@v2
       with:
