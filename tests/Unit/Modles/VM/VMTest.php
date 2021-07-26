@@ -29,6 +29,10 @@ class VMTest extends TestCase
         $this->assertEquals("vm-111",$vmSource->moid);
         $this->assertLastRequestEquals("GET","/vm/vm-111");
     }
+    public function test_can_not_get_vm_by_mo_id_without_providing_mo_id(){
+        $this->expectException(\ArgumentCountError::class);
+        $this->vm->byMoId();
+    }
     public function test_get_all_vms(){
         $this->mockHandler->append(new Response(200,[],file_get_contents(__DIR__.'/fixture/vms.json')));
         $vmManager=$this->vm->all();
@@ -36,6 +40,19 @@ class VMTest extends TestCase
         $this->assertLastRequestEquals("GET","/vm");
         $this->assertCount(4, $vmManager);
         $this->assertInstanceOf(VmSource::class,$vmManager->first());
+    }
+    public function test_get_all_vms_with_query_filters(){
+        $this->mockHandler->append(new Response(200,[],file_get_contents(__DIR__.'/fixture/vms.json')));
+        $query=[
+            "filter.vms"=>"VirtualMachine",
+            "filter.power_states"=>"POWERED_ON"
+        ];
+        $vmManager=$this->vm->all($query);
+        $this->assertInstanceOf(ManageVms::class,$vmManager);
+        $this->assertLastRequestEquals("GET","/vm");
+        $this->assertCount(4, $vmManager);
+        $this->assertLastRequestQueryStrings($query);
+
     }
     public function test_get_power_accessor(){
         $powerAccessor=$this->vm->power();
@@ -57,5 +74,4 @@ class VMTest extends TestCase
         $guestPower=$this->vm->guestPower();
         $this->assertInstanceOf(GuestPower::class,$guestPower);
     }
-
 }

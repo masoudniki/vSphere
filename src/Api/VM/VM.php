@@ -32,11 +32,15 @@ class VM
         return new Hardware($this->HttpClient);
     }
     public function all(array $query=null){
-        $response=$this->HttpClient->get("vm",[],$query);
+        $response=$this->HttpClient->get("vm",[
+            "query"=>$query
+        ]);
         return new ManageVms(json_decode($response->getBody()),$this->HttpClient);
     }
     public function byMoId($moid, array $query=[]){
-        $response=$this->HttpClient->get("vm/$moid",[],$query);
+        $response=$this->HttpClient->get("vm/$moid",[
+            "query"=>$query
+        ]);
         return new VmSource($this->HttpClient,json_decode($response->getBody()),$moid);
     }
 }

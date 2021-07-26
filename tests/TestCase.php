@@ -34,6 +34,9 @@ class TestCase extends \PHPUnit\Framework\TestCase
         $body = (string) $this->mockHandler->getLastRequest()->getBody();
         $this->assertEmpty($body);
     }
+    public function assertLastRequestQueryStrings($query){
+        $this->assertEquals($this->mockHandler->getLastRequest()->getUri()->getQuery(),http_build_query($query));
+    }
 
 
 
