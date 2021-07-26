@@ -1,6 +1,14 @@
 # Made with ❤️ in `IRAN`
 # vspahre
-a sdk for working with vsphare automation api.You can use it to manage ESX and vCenter servers. Currently the library supports vSphere API from version 6.7
+a sdk for working with vsphare automation api.You can use it to manage ESX and vCenter servers;
+
+# Supported Versions
+| **vCenterApplianceVersion** 	| **status** 	| **description**                                                	|
+|-----------------------------	|------------	|----------------------------------------------------------------	|
+| `7.0`                       	| supported  	|                                                                	|
+| `6.7`                       	| supported  	| some of api like **ConsoleTicket** is not working [more information](https://developer.vmware.com/docs/vsphere-automation/latest/vcenter/) 	|
+| 6.5                         	| supported  	|                                                                	|
+
 
 
 # Installation
