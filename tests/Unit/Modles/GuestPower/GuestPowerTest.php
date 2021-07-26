@@ -16,7 +16,6 @@ class GuestPowerTest extends TestCase
         parent::setUp();
         $this->guestPower=new GuestPower($this->vmwareApiClient->getHttpClient());
     }
-
     public function test_get_guest_power(){
         $this->mockHandler->append(new Response(200,[],file_get_contents(__DIR__."/fixture/power.json")));
         $response=$this->guestPower->power("vm-111");
@@ -29,12 +28,33 @@ class GuestPowerTest extends TestCase
         $this->assertTrue($this->guestPower->reboot("vm-111"));
         $this->assertLastRequestEquals("POST","/vm/vm-111/guest/power");
         $this->assertLastRequestBodyIsEmpty();
+        $this->assertLastRequestQueryStrings([
+            "query"=>[
+                "method"=>"reboot"
+            ]
+        ]);
+    }
+    public function test_guest_shutdown_vm(){
+        $this->mockHandler->append(new Response(200,[],""));
+        $this->assertTrue($this->guestPower->shutdown("vm-111"));
+        $this->assertLastRequestEquals("POST","/vm/vm-111/guest/power");
+        $this->assertLastRequestBodyIsEmpty();
+        $this->assertLastRequestQueryStrings([
+            "query"=>[
+                "method"=>"shutdown"
+            ]
+        ]);
     }
     public function test_guest_standby_vm(){
         $this->mockHandler->append(new Response(200,[],""));
         $this->assertTrue($this->guestPower->standby("vm-111"));
         $this->assertLastRequestBodyIsEmpty();
         $this->assertLastRequestEquals("POST","/vm/vm-111/guest/power");
+        $this->assertLastRequestQueryStrings([
+            "query"=>[
+                "method"=>"standby"
+            ]
+        ]);
     }
 
 }
