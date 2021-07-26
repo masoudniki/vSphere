@@ -19,7 +19,7 @@ class Tools extends InitClass
      * Get the properties of VMware Tools.
      */
     public function tools($moid=null){
-        return ApiResponse::BodyResponse($this->HttpClient->get("vm/{$this->getMoid()}/tools"));
+        return ApiResponse::BodyResponse($this->HttpClient->get("vm/{$this->getMoid($moid)}/tools"));
     }
 
     /**

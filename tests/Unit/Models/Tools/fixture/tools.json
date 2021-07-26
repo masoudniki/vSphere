@@ -1,0 +1,12 @@
+{
+  "value": {
+    "auto_update_supported": false,
+    "install_attempt_count": 0,
+    "install_type": "enum",
+    "run_state": "enum",
+    "upgrade_policy": "enum",
+    "version": "string",
+    "version_number": 0,
+    "version_status": "enum"
+  }
+}
