@@ -1,5 +1,7 @@
 # Made with ❤️ in `IRAN`
 [![Actions Status](https://github.com/masoudniki/vSphere/workflows/CI/badge.svg)](https://github.com/masoudniki/vSphere/actions)
+[![Latest Stable Version](http://poser.pugx.org/masoudniki/vcenter/v)](https://packagist.org/packages/masoudniki/vcenter)
+[![License](http://poser.pugx.org/masoudniki/vcenter/license)](https://packagist.org/packages/masoudniki/vcenter)
 # vspahre
 a sdk for working with vsphare automation api.You can use it to manage ESX and vCenter servers;
 
@@ -71,7 +73,7 @@ increasing session timeout in vCenter and pass directly the session id
     $vmware->getSessionId();
 ```
 ## SSL
-if you are usign self signed certificate **pass the path of certificate** or set ** true ** otherwise if you dont want to check certificate set **false**
+if you are usign self signed certificate **pass the path of certificate** or set **true** otherwise if you dont want to check certificate set **false**
 
 ## Protocol
 if you are running vCenterAppliance on http protocol set **http** or if you are running it on https set **https**
