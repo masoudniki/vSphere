@@ -37,5 +37,8 @@ class TestCase extends \PHPUnit\Framework\TestCase
     public function assertLastRequestQueryStrings($query){
         $this->assertEquals($this->mockHandler->getLastRequest()->getUri()->getQuery(),http_build_query($query));
     }
+    public function assertLastRequestBody($body){
+        $this->assertEquals((string)$this->mockHandler->getLastRequest()->getBody(),json_encode($body));
+    }
 
 }

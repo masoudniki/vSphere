@@ -28,4 +28,25 @@ class ToolsTest extends TestCase
         $this->assertEquals("enum",$response->value->install_type);
         $this->assertEquals("enum",$response->value->run_state);
     }
+    public function test_update_tools(){
+        $this->mockHandler->append(new Response(200,[],""));
+        $body=[
+            "spec"=>[
+                'upgrade_policy'=>"MANUAL"
+            ]
+        ];
+        $this->assertTrue($this->tools->updateTools($body,'vm-111'));
+        $this->assertLastRequestBody($body);
+        $this->assertLastRequestEquals("PATCH","/vm/vm-111/tools");
+    }
+    public function test_upgrade_tools(){
+        $this->mockHandler->append(new Response(200,[],""));
+        $body=[
+            "command_line_options"=>"string"
+        ];
+        $this->assertTrue($this->tools->upgradeTools($body,'vm-111'));
+        $this->assertLastRequestBody($body);
+        $this->assertLastRequestEquals("POST","/vm/vm-111/tools");
+    }
+
 }
