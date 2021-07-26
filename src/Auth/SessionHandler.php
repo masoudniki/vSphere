@@ -34,7 +34,7 @@ class SessionHandler
     public static function isSessionExist($credential){
         return array_key_exists("Vmware-Api-Session-Id",$credential);
     }
-    private function validateCredentials(VmwareApiClient $client)
+    public static function validateCredentials(VmwareApiClient $client)
     {
         if((array_key_exists("username",$client->credential) && array_key_exists("password",$client->credential)) or array_key_exists("Vmware-Api-Session-Id",$client->credential))
             return true;
