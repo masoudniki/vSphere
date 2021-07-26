@@ -14,14 +14,21 @@
     }
   ],
   "autoload": {
-    "psr-4": {"vsphere\\": "src/"}
+    "psr-4": {"FNDEV\\vShpare\\": "src/"}
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "FNDEV\\Tests\\": "tests/"
+    }
   },
   "require": {
-    "php": "^7.2.5",
+    "php": "^7.4",
     "ext-json": "*",
-    "guzzlehttp/guzzle": "^7.0"
+    "guzzlehttp/guzzle": "^7.0",
+    "ext-http": "*"
   },
   "require-dev": {
-    "larapack/dd": "^1.1"
+    "larapack/dd": "^1.1",
+    "phpunit/phpunit": "^9.5"
   }
 }

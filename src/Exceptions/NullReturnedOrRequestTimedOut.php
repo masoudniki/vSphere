@@ -1,7 +1,7 @@
 <?php
 
 
-namespace vsphere\Exceptions;
+namespace FNDEV\vShpare\Exceptions;
 
 
 class NullReturnedOrRequestTimedOut extends \Exception

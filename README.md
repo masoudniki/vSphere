@@ -17,7 +17,7 @@ create a php file and add autoload.php
 then simply create a instance from vmware
 
 ```php
-$vcenter=new \vsphere\vmware(host,credential,option);
+$vcenter=new \vsphere\VmwareApiClient(host,credential,option);
 ```
 # Required Parameter
 ### host

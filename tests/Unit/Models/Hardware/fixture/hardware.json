@@ -1,0 +1,9 @@
+{
+  "value": {
+    "upgrade_error": "string",
+    "version": "VMX_03",
+    "upgrade_policy": "NEVER",
+    "upgrade_status": "NONE",
+    "upgrade_version": "VMX_03"
+  }
+}
