@@ -32,9 +32,7 @@ just pass argument to the ```VmwareApiClient``` and create an instace:
  ```
 # Parametrs
 ## host
-first parameter you should pass to the vmware class make sure that your url start with http or https and end with **/**
-otherwise you get an error with this message 
-> host not found
+only the domain name without any protocol and slash charcher or ip address is acceptable
 
 ## Port
 the port of vCenterAppliance application default value is: **443**
