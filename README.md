@@ -1,4 +1,5 @@
 # Made with ❤️ in `IRAN`
+[![Actions Status](https://github.com/masoudniki/vSphere/workflows/CI/badge.svg)](https://github.com/masoudniki/vSphere/actions)
 # vspahre
 a sdk for working with vsphare automation api.You can use it to manage ESX and vCenter servers;
 
