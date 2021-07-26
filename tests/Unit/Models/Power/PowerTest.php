@@ -1,14 +1,17 @@
 <?php
 
 
-namespace FNDEV\Tests\Unit\Modles\Power;
+namespace FNDEV\Tests\Unit\Models\Power;
 
 
 use FNDEV\Tests\TestCase;
 use FNDEV\vShpare\Api\VM\Power\Power;
 use GuzzleHttp\Psr7\Response;
+use http\Exception\InvalidArgumentException;
 use PhpParser\Node\Scalar\MagicConst\Dir;
-
+/**
+ * @uses \FNDEV\vShpare\Api\VM\Power\Power
+ */
 class PowerTest extends TestCase
 {
     public Power $power;
@@ -22,6 +25,10 @@ class PowerTest extends TestCase
         $this->assertTrue($this->power->powerOff('vm-111'));
         $this->assertLastRequestEquals("POST","/vm/vm-111/power/stop");
         $this->assertLastRequestBodyIsEmpty();
+    }
+    public function test_can_not_get_power_with_out_moid(){
+        $this->expectException(\InvalidArgumentException::class);
+        $this->assertTrue($this->power->powerOff());
     }
     public function test_power_on_vm(){
         $this->mockHandler->append(new Response(200,[],""));

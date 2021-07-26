@@ -1,13 +1,16 @@
 <?php
 
 
-namespace FNDEV\Tests\Unit\Modles\GuestPower;
+namespace FNDEV\Tests\Unit\Models\GuestPower;
 
 
 use FNDEV\Tests\TestCase;
 use FNDEV\vShpare\Api\VM\GuestPower\GuestPower;
 use GuzzleHttp\Psr7\Response;
 
+/**
+ * @uses \FNDEV\vShpare\Api\VM\GuestPower\GuestPower
+ */
 class GuestPowerTest extends TestCase
 {
     public GuestPower $guestPower;

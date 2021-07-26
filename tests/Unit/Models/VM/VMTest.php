@@ -1,7 +1,7 @@
 <?php
 
 
-namespace FNDEV\Tests\Unit\Modles\VM;
+namespace FNDEV\Tests\Unit\Models\VM;
 
 
 use FNDEV\Tests\TestCase;
@@ -14,7 +14,9 @@ use FNDEV\vShpare\Api\VM\Tools\Tools;
 use FNDEV\vShpare\Api\VM\VM;
 use FNDEV\vShpare\Api\VM\VmSource;
 use GuzzleHttp\Psr7\Response;
-
+/**
+ * @uses \FNDEV\vShpare\Api\VM\VM
+ */
 class VMTest extends TestCase
 {
     public VM $vm;

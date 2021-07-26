@@ -13,7 +13,7 @@ class ConsoleTickets extends InitClass
 {
     use MOID;
     public function createConsoleTickets(array $body,$moid=null){
-        return ApiResponse::BodyResponse($this->HttpClient->post("vm/{$this->getMoid()}/console/tickets",[
+        return ApiResponse::BodyResponse($this->HttpClient->post("vm/{$this->getMoid($moid)}/console/tickets",[
             RequestOptions::JSON=>$body
         ]));
     }
