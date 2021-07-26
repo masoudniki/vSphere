@@ -29,9 +29,7 @@ class GuestPowerTest extends TestCase
         $this->assertLastRequestEquals("POST","/vm/vm-111/guest/power");
         $this->assertLastRequestBodyIsEmpty();
         $this->assertLastRequestQueryStrings([
-            "query"=>[
-                "method"=>"reboot"
-            ]
+                "action"=>"reboot"
         ]);
     }
     public function test_guest_shutdown_vm(){
@@ -40,9 +38,7 @@ class GuestPowerTest extends TestCase
         $this->assertLastRequestEquals("POST","/vm/vm-111/guest/power");
         $this->assertLastRequestBodyIsEmpty();
         $this->assertLastRequestQueryStrings([
-            "query"=>[
-                "method"=>"shutdown"
-            ]
+                "action"=>"shutdown"
         ]);
     }
     public function test_guest_standby_vm(){
@@ -51,9 +47,7 @@ class GuestPowerTest extends TestCase
         $this->assertLastRequestBodyIsEmpty();
         $this->assertLastRequestEquals("POST","/vm/vm-111/guest/power");
         $this->assertLastRequestQueryStrings([
-            "query"=>[
-                "method"=>"standby"
-            ]
+                "action"=>"standby"
         ]);
     }
 
