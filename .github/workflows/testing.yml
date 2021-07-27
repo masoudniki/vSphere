@@ -23,17 +23,13 @@ jobs:
          composer install
     - name: Run phpunit
       run: |
-        ls
-        pwd
-        php vendor/bin/phpunit --coverage-xml ./coverage
-        ls coverage
-        pwd
+        php vendor/bin/phpunit --coverage-clover coverage.xml
     - uses: codecov/codecov-action@v2
       with:
         token: ${{ secrets.CODECOV_TOKEN }} 
         flags: unittests 
         directory: /home/runner/work/vSphere/vSphere/coverage
-        files : VmwareApiClient.php.xml
+        files : coverage.xml
         name: codecov-umbrella 
         fail_ci_if_error: true
         verbose: true 
