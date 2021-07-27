@@ -33,6 +33,7 @@ jobs:
         token: ${{ secrets.CODECOV_TOKEN }} 
         flags: unittests 
         directory: /home/runner/work/vSphere/vSphere/coverage
+        files : VmwareApiClient.php.xml
         name: codecov-umbrella 
         fail_ci_if_error: true
         verbose: true 
