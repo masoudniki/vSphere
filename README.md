@@ -33,20 +33,16 @@ just pass argument to the ```VmwareApiClient``` and create an instace:
     require "vendor/autoload.php";
     $vmware=new \FNDEV\vShpare\VmwareApiClient(
         "127.0.0.1",
-        "443",
         [
             "username"=>"admin",
             "password"=>"admin"
         ],
+         "443",
     );
  ```
 # Parametrs
 ## Host
 only the domain name without any protocol and slash charcher or ip address is acceptable
-
-## Port
-the port of vCenterAppliance application default value is: **443**
-
 
 ## Credentials
 **You have two options for authentication:**
@@ -79,6 +75,11 @@ increasing session timeout in vCenter and pass directly the session id
     );
     $vmware->getSessionId();
 ```
+
+## Port
+the port of vCenterAppliance application default value is: **443**
+
+
 ## SSL
 if you are using self signed certificate **pass the path of certificate** or set **true** otherwise if you dont want to check certificate set **false**
 
