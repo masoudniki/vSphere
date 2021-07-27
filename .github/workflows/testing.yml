@@ -30,6 +30,6 @@ jobs:
         directory: ./coverage
         name: codecov-umbrella 
         fail_ci_if_error: true
-        verbose: true)
+        verbose: true 
     - name: Run phpstan
       run: php vendor/bin/phpstan analyse src --level 1
