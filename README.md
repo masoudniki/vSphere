@@ -118,7 +118,7 @@ If you discover any security-related issues, please email `masoud.niki79@gmail.c
 
 # TODO
 
-- [ ] add other APIs to the SDK
+- [ ] Add other APIs to the SDK
 - [ ] Writing more tests 
 - [ ] Creating request class for methods that send options **like createVm**
 - [ ] Refactoring bad practice
