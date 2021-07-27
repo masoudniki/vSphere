@@ -22,6 +22,14 @@ jobs:
       run: |
          composer install
     - name: Run phpunit
-      run: php vendor/bin/phpunit
+      run: php vendor/bin/phpunit --coverage-xml "./coverage"
+    - uses: codecov/codecov-action@v2
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }} 
+        flags: unittests 
+        directory: ./coverage
+        name: codecov-umbrella 
+        fail_ci_if_error: true
+        verbose: true)
     - name: Run phpstan
       run: php vendor/bin/phpstan analyse src --level 1
