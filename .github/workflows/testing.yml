@@ -22,12 +22,15 @@ jobs:
       run: |
          composer install
     - name: Run phpunit
-      run: php vendor/bin/phpunit --coverage-xml ./coverage
+      run: |
+        ls
+        pwd
+        php vendor/bin/phpunit --coverage-xml /coverage
     - uses: codecov/codecov-action@v2
       with:
         token: ${{ secrets.CODECOV_TOKEN }} 
         flags: unittests 
-        directory: ./coverage
+        directory: /coverage/
         name: codecov-umbrella 
         fail_ci_if_error: true
         verbose: true 
