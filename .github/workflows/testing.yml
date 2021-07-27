@@ -25,12 +25,14 @@ jobs:
       run: |
         ls
         pwd
-        php vendor/bin/phpunit --coverage-xml /coverage
+        php vendor/bin/phpunit --coverage-xml ./coverage
+        ls
+        pwd
     - uses: codecov/codecov-action@v2
       with:
         token: ${{ secrets.CODECOV_TOKEN }} 
         flags: unittests 
-        directory: /coverage/
+        directory: /home/runner/work/vSphere/vSphere/coverage
         name: codecov-umbrella 
         fail_ci_if_error: true
         verbose: true 
