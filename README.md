@@ -14,7 +14,7 @@
     
 </div>
 
-SDK for working with vSphere automation api. You can use it to manage ESXI and vCenter powered machines.
+SDK for working with vSphere automation API. You can use it to manage ESXI and vCenter powered machines.
 
 # Supported Versions
 | **vCenterApplianceVersion** 	| **status** 	| **description**                                                	|
@@ -44,7 +44,7 @@ just pass argument to the ```VmwareApiClient``` and create an instace:
          "443",
     );
  ```
-# Parametrs
+# Parameters
 ## Host
 only the domain name without any protocol and slash charcher or ip address is acceptable
 
