@@ -7,6 +7,7 @@
 [![Actions Status](https://github.com/masoudniki/vSphere/workflows/CI/badge.svg)](https://github.com/masoudniki/vSphere/actions)
 [![Latest Stable Version](http://poser.pugx.org/masoudniki/vcenter/v)](https://packagist.org/packages/masoudniki/vcenter)
 [![License](http://poser.pugx.org/masoudniki/vcenter/license)](https://packagist.org/packages/masoudniki/vcenter)    
+[![codecov](https://codecov.io/gh/masoudniki/vSphere/branch/master/graph/badge.svg?token=zly1MFGFuU)](https://codecov.io/gh/masoudniki/vSphere)
     
 </div>
 
