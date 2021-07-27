@@ -26,7 +26,7 @@ jobs:
         ls
         pwd
         php vendor/bin/phpunit --coverage-xml ./coverage
-        ls
+        ls coverage
         pwd
     - uses: codecov/codecov-action@v2
       with:
