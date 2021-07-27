@@ -8,6 +8,9 @@
 [![Latest Stable Version](http://poser.pugx.org/masoudniki/vcenter/v)](https://packagist.org/packages/masoudniki/vcenter)
 [![License](http://poser.pugx.org/masoudniki/vcenter/license)](https://packagist.org/packages/masoudniki/vcenter)    
 [![codecov](https://codecov.io/gh/masoudniki/vSphere/branch/master/graph/badge.svg?token=zly1MFGFuU)](https://codecov.io/gh/masoudniki/vSphere)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/masoudniki/vSphere/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/masoudniki/vSphere/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/g/masoudniki/vSphere/badges/build.png?b=master)](https://scrutinizer-ci.com/g/masoudniki/vSphere/build-status/master)
+    [![Code Intelligence Status](https://scrutinizer-ci.com/g/masoudniki/vSphere/badges/code-intelligence.svg?b=master)](https://scrutinizer-ci.com/code-intelligence)
     
 </div>
 
