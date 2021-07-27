@@ -1,6 +1,16 @@
-# Made with ❤️ in `IRAN`
-# vspahre
-a sdk for working with vsphare automation api.You can use it to manage ESX and vCenter servers;
+
+
+# VMware vSphere SDK
+
+<div align="center">
+    
+[![Actions Status](https://github.com/masoudniki/vSphere/workflows/CI/badge.svg)](https://github.com/masoudniki/vSphere/actions)
+[![Latest Stable Version](http://poser.pugx.org/masoudniki/vcenter/v)](https://packagist.org/packages/masoudniki/vcenter)
+[![License](http://poser.pugx.org/masoudniki/vcenter/license)](https://packagist.org/packages/masoudniki/vcenter)    
+    
+</div>
+
+SDK for working with vSphere automation api. You can use it to manage ESXI and vCenter powered machines.
 
 # Supported Versions
 | **vCenterApplianceVersion** 	| **status** 	| **description**                                                	|
@@ -12,12 +22,12 @@ a sdk for working with vsphare automation api.You can use it to manage ESX and v
 
 
 # Installation
-its super easy to use just run command below:
+It's super easy to use, just run the below command:
 ```sh
 composer require masoudniki/vcenter
 ```
 
-# How To Use It
+# How to use it
 just pass argument to the ```VmwareApiClient``` and create an instace:
 ```php
     require "vendor/autoload.php";
@@ -31,17 +41,17 @@ just pass argument to the ```VmwareApiClient``` and create an instace:
     );
  ```
 # Parametrs
-## host
+## Host
 only the domain name without any protocol and slash charcher or ip address is acceptable
 
 ## Port
 the port of vCenterAppliance application default value is: **443**
 
 
-## credential
-**you have two option for authentication:**
+## Credentials
+**You have two options for authentication:**
 
-### with username and password
+### With username and password
 you can pass username and password in array for getting session id 
 ```
 [
@@ -49,14 +59,14 @@ you can pass username and password in array for getting session id
     'password'=>'123456789'
 ]
 ```
-### or with Vmware-Api-Session-Id
+### Or with Vmware-Api-Session-Id
 increasing session timeout in vCenter and pass directly the session id 
 ```
 [
     'Vmware-Api-Session-Id'=>$sessionId
 ]
 ```
-> for the first time you can pass username and password and then get the session with **getSessionId()** method on VmwareApiClient
+> For the initiation & first time use you can pass username and password and then get the session with **getSessionId()** method on VmwareApiClient
 ```php
     require "vendor/autoload.php";
     $vmware=new \FNDEV\vShpare\VmwareApiClient(
@@ -70,22 +80,22 @@ increasing session timeout in vCenter and pass directly the session id
     $vmware->getSessionId();
 ```
 ## SSL
-if you are usign self signed certificate **pass the path of certificate** or set ** true ** otherwise if you dont want to check certificate set **false**
+if you are using self signed certificate **pass the path of certificate** or set **true** otherwise if you dont want to check certificate set **false**
 
 ## Protocol
-if you are running vCenterAppliance on http protocol set **http** or if you are running it on https set **https**
+if you are running vCenterAppliance on HTTP protocol set **http** or if you are running it on HTTPS set **https**
 
 ## BaseUrl
-the main path of rest api default value is: **"/rest/vcenter"**
+The main path of REST API default value is: **"/rest/vcenter"**
 ## AuthUrl
-the authetication url for creating **Vmware-Api-Session-Id** default value is:"/rest/com/vmware/cis/session"
+The authetication URL for creating **Vmware-Api-Session-Id** default value is:"/rest/com/vmware/cis/session"
 ## Client
-you can create your **guzzle http client** and set its configuartion then pass it to **VmwaareApiClient**
+You can create your **guzzle http client** and set its configuartion then pass it to **VmwaareApiClient**
 
 
 
 ## License
-
+###### Made with ❤️ in `IRAN`
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
 
 --------------------
@@ -103,10 +113,10 @@ If you discover any security-related issues, please email `masoud.niki79@gmail.c
 
 # TODO
 
-- [ ] add other api to sdk
-- [ ] write more test 
-- [ ] create request class for methods that send options **like createVm**
-- [ ] detect bad codes
+- [ ] add other APIs to the SDK
+- [ ] Writing more tests 
+- [ ] Creating request class for methods that send options **like createVm**
+- [ ] Refactoring bad practice
 
 
 
