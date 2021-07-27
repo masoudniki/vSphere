@@ -7,10 +7,14 @@
 [![Actions Status](https://github.com/masoudniki/vSphere/workflows/CI/badge.svg)](https://github.com/masoudniki/vSphere/actions)
 [![Latest Stable Version](http://poser.pugx.org/masoudniki/vcenter/v)](https://packagist.org/packages/masoudniki/vcenter)
 [![License](http://poser.pugx.org/masoudniki/vcenter/license)](https://packagist.org/packages/masoudniki/vcenter)    
+[![codecov](https://codecov.io/gh/masoudniki/vSphere/branch/master/graph/badge.svg?token=zly1MFGFuU)](https://codecov.io/gh/masoudniki/vSphere)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/masoudniki/vSphere/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/masoudniki/vSphere/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/g/masoudniki/vSphere/badges/build.png?b=master)](https://scrutinizer-ci.com/g/masoudniki/vSphere/build-status/master)
+    [![Code Intelligence Status](https://scrutinizer-ci.com/g/masoudniki/vSphere/badges/code-intelligence.svg?b=master)](https://scrutinizer-ci.com/code-intelligence)
     
 </div>
 
-SDK for working with vSphere automation api. You can use it to manage ESXI and vCenter powered machines.
+SDK for working with vSphere automation API. You can use it to manage ESXI and vCenter powered machines.
 
 # Supported Versions
 | **vCenterApplianceVersion** 	| **status** 	| **description**                                                	|
@@ -40,7 +44,7 @@ just pass argument to the ```VmwareApiClient``` and create an instace:
          "443",
     );
  ```
-# Parametrs
+# Parameters
 ## Host
 only the domain name without any protocol and slash charcher or ip address is acceptable
 
@@ -114,7 +118,7 @@ If you discover any security-related issues, please email `masoud.niki79@gmail.c
 
 # TODO
 
-- [ ] add other APIs to the SDK
+- [ ] Add other APIs to the SDK
 - [ ] Writing more tests 
 - [ ] Creating request class for methods that send options **like createVm**
 - [ ] Refactoring bad practice
