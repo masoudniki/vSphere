@@ -28,7 +28,7 @@ jobs:
       with:
         token: ${{ secrets.CODECOV_TOKEN }} 
         flags: unittests 
-        directory: /home/runner/work/vSphere/vSphere/coverage
+        directory: /home/runner/work/vSphere/vSphere/
         files : coverage.xml
         name: codecov-umbrella 
         fail_ci_if_error: true
