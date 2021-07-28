@@ -4,3 +4,4 @@ composer.lock
 MainController.php
 .phpunit.result.cache
 /.phpunit.cache
+/codecov
