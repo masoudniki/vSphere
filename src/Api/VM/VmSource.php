@@ -47,8 +47,11 @@ class VmSource
     public function consoleTicket(){
         return new ConsoleTickets($this->HttpClient,$this);
     }
-    public function hardWare(){
+    public function hardware(){
         return new Hardware($this->HttpClient,$this);
+    }
+    public function resources(){
+        return new Resources\Resources($this->HttpClient,$this);
     }
     public function isPoweredOn(){
         return $this->properties->power_state==self::POWERED_ON;
