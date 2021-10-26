@@ -1,0 +1,17 @@
+{
+  "value": {
+    "start_connected": true,
+    "backing": {
+      "iso_file": "[datastore1] contentlib-e19f7caa-76f5-4c6a-ba46-50fbd98c1e97\/ce0ed437-6bcd-47c6-b406-957245ce09f1\/TinyCore-current_712f93e7-7f51-43a1-80e5-3fa307e210f9.iso",
+      "type": "ISO_FILE"
+    },
+    "allow_guest_control": true,
+    "label": "CD\/DVD drive 1",
+    "ide": {
+      "primary": true,
+      "master": true
+    },
+    "state": "CONNECTED",
+    "type": "IDE"
+  }
+}

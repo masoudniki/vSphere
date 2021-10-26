@@ -14,9 +14,8 @@ use FNDEV\vShpare\Api\VM\Hardware\Hardware;
 class HardwareTest extends TestCase
 {
     public function test_get_cdrom(){
-        $hardware=new Hardware($this->vmwareApiClient);
+        $hardware=new Hardware($this->vmwareApiClient->getHttpClient());
         $this->assertInstanceOf(CDROM::class,$hardware->cdrom());
-
     }
 
 
