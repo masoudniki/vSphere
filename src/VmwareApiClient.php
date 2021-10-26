@@ -1,5 +1,6 @@
 <?php
     namespace FNDEV\vShpare;
+    use FNDEV\vShpare\Auth\SessionHandler;
     use FNDEV\vShpare\Client\GuzzleClient;
     use \GuzzleHttp\Client;
     class VmwareApiClient{
@@ -32,7 +33,7 @@
             $this->HttpClient=$client;
         }
         public function getSessionId(){
-            return $this->HttpClient;
+            return SessionHandler::getSession($this);
         }
         public function getBaseUrl(){
             return $this->addScheme($this->host.":".$this->port."/".trim($this->baseUrl,"/")."/",$this->protocol);

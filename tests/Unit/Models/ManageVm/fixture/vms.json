@@ -1,0 +1,33 @@
+{
+  "value": [
+    {
+      "cpu_count": 10,
+      "vm": "vm-111",
+      "power_state": "POWERED_OFF",
+      "memory_size_MiB": 0,
+      "name": "string"
+    },
+    {
+      "cpu_count": 0,
+      "vm": "vm-222",
+      "power_state": "POWERED_OFF",
+      "memory_size_MiB": 0,
+      "name": "string"
+    },
+    {
+      "cpu_count": 0,
+      "vm": "vm-333",
+      "power_state": "POWERED_OFF",
+      "memory_size_MiB": 0,
+      "name": "string"
+    },
+    {
+      "cpu_count": 0,
+      "vm": "vm-444",
+      "power_state": "POWERED_OFF",
+      "memory_size_MiB": 0,
+      "name": "string"
+    }
+
+  ]
+}

@@ -9,12 +9,13 @@ use GuzzleHttp\Client;
 
 class SessionHandler
 {
+    public static ?Client $client=null;
     public static function getSession(VmwareApiClient $client){
         self::validateCredentials($client);
         return self::isSessionExist($client->credential) ? $client->credential['Vmware-Api-Session-Id'] : self::authRequest($client);
     }
     public static function authRequest(VmwareApiClient $client){
-        $HttpClient=new Client(
+        $HttpClient=isset(static::$client) ? self::$client : new Client(
             [
                 "verify"=>$client->ssl,
                 "headers"=>[
