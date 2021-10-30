@@ -30,17 +30,17 @@ class CDROMTest extends TestCase
     public function test_delete_cd_rom(){
         $this->mockHandler->append(new Response(200,[],"null"));
         $response=$this->cdrom->disconnectCdRom("3000","vm-412");
-        $this->assertEquals($response->value,null);
+        $this->assertEquals($response,null);
     }
     public function test_disconnect_cd_rom(){
         $this->mockHandler->append(new Response(200,[],file_get_contents(__DIR__."/fixture/disconnectCdrom.json")));
         $response=$this->cdrom->disconnectCdRom("3000","vm-412");
-        $this->assertEquals($response->value,null);
+        $this->assertEquals($response,null);
     }
     public function test_connect_cd_rom(){
         $this->mockHandler->append(new Response(200,[],file_get_contents(__DIR__."/fixture/disconnectCdrom.json")));
         $response=$this->cdrom->disconnectCdRom("3000","vm-412");
-        $this->assertEquals($response->value,null);
+        $this->assertEquals($response,null);
     }
     public function test_create_cd_rom(){
         $this->mockHandler->append(new Response(200,[],file_get_contents(__DIR__."/fixture/createCdrom.json")));
