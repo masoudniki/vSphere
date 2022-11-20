@@ -22,7 +22,7 @@ class ToolsTest extends TestCase
     public function test_get_tools(){
         $this->mockHandler->append(new Response(200,[],file_get_contents(__DIR__."/fixture/tools.json")));
         $response=$this->tools->tools('vm-111');
-        $this->assertLastRequestEquals("GET","/vm/vm-111/tools");
+        $this->assertLastRequestEquals("GET","/vcenter/vm/vm-111/tools");
         $this->assertEquals(false,$response->value->auto_update_supported);
         $this->assertEquals(0,$response->value->install_attempt_count);
         $this->assertEquals("enum",$response->value->install_type);
@@ -37,7 +37,7 @@ class ToolsTest extends TestCase
         ];
         $this->assertTrue($this->tools->updateTools($body,'vm-111'));
         $this->assertLastRequestBody($body);
-        $this->assertLastRequestEquals("PATCH","/vm/vm-111/tools");
+        $this->assertLastRequestEquals("PATCH","/vcenter/vm/vm-111/tools");
     }
     public function test_upgrade_tools(){
         $this->mockHandler->append(new Response(200,[],""));
@@ -46,7 +46,7 @@ class ToolsTest extends TestCase
         ];
         $this->assertTrue($this->tools->upgradeTools($body,'vm-111'));
         $this->assertLastRequestBody($body);
-        $this->assertLastRequestEquals("POST","/vm/vm-111/tools");
+        $this->assertLastRequestEquals("POST","/vcenter/vm/vm-111/tools");
     }
 
 }

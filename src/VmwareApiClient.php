@@ -1,5 +1,7 @@
 <?php
     namespace FNDEV\vShpare;
+    use FNDEV\vShpare\Api\Tagging\Tagging;
+    use FNDEV\vShpare\Api\VM\VM;
     use FNDEV\vShpare\Auth\SessionHandler;
     use FNDEV\vShpare\Client\GuzzleClient;
     use \GuzzleHttp\Client;
@@ -12,7 +14,7 @@
         public $authUrl;
         public $protocol;
         public $port;
-        public function __construct($host,array $credential,$port=443,$ssl=false,$protocol="https",$baseurl="/rest/vcenter",$authurl="/rest/com/vmware/cis/session",?Client $client=null)
+        public function __construct($host,array $credential,$port=443,$ssl=false,$protocol="https",$baseurl="/rest/",$authurl="/rest/com/vmware/cis/session",?Client $client=null)
         {
             $this->host=$host;
             $this->port=$port;
@@ -23,8 +25,11 @@
             $this->protocol=$protocol;
             $this->HttpClient=$client??new GuzzleClient($this);
         }
-        public function vm(){
+        public function vm():VM{
             return new Api\VM\VM($this->HttpClient);
+        }
+        public function tagging():Tagging{
+            return new Tagging($this->HttpClient);
         }
         public function getHttpClient(){
             return $this->HttpClient;

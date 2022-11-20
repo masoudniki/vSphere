@@ -31,7 +31,7 @@ class VmwareApiClientTest extends TestCase
         $this->assertTrue($vmAccessor->HttpClient===$this->vmwareApiClient->getHttpClient());
     }
     public function test_get_base_url(){
-        $expectedUrl="https://127.0.0.1:443/rest/vcenter/";
+        $expectedUrl="https://127.0.0.1:443/rest/";
         $this->assertEquals($expectedUrl,$this->vmwareApiClient->getBaseUrl());
     }
     public function test_get_base_auth_url(){

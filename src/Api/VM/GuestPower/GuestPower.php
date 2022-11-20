@@ -17,13 +17,13 @@ class GuestPower extends InitClass
      * Returns information about the guest operating system power state.
      */
     public function power($moid=null){
-        return ApiResponse::BodyResponse($this->HttpClient->get("vm/{$this->getMoid($moid)}/guest/power"));
+        return ApiResponse::BodyResponse($this->HttpClient->get("vcenter/vm/{$this->getMoid($moid)}/guest/power"));
     }
     /**
      * Issues a request to the guest operating system asking it to perform a clean shutdown of all services. This request returns immediately and does not wait for the guest operating system to complete the operation.
      */
     public function shutdown($moid=null){
-        return !ApiResponse::HasError($this->HttpClient->post("vm/{$this->getMoid($moid)}/guest/power",[
+        return !ApiResponse::HasError($this->HttpClient->post("vcenter/vm/{$this->getMoid($moid)}/guest/power",[
             "query"=>[
                 "action"=>"shutdown"
             ]
@@ -33,7 +33,7 @@ class GuestPower extends InitClass
      * Issues a request to the guest operating system asking it to perform a reboot. This request returns immediately and does not wait for the guest operating system to complete the operation
      */
     public function reboot($moid=null){
-        return !ApiResponse::HasError($this->HttpClient->post("vm/{$this->getMoid($moid)}/guest/power",[
+        return !ApiResponse::HasError($this->HttpClient->post("vcenter/vm/{$this->getMoid($moid)}/guest/power",[
             "query"=>[
                 "action"=>"reboot"
             ]
@@ -43,7 +43,7 @@ class GuestPower extends InitClass
      * Issues a request to the guest operating system asking it to perform a suspend operation.
      */
     public function standby($moid=null){
-        return !ApiResponse::HasError($this->HttpClient->post("vm/{$this->getMoid($moid)}/guest/power",[
+        return !ApiResponse::HasError($this->HttpClient->post("vcenter/vm/{$this->getMoid($moid)}/guest/power",[
             "query"=>[
                 "action"=>"standby"
             ]

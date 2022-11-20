@@ -32,7 +32,7 @@ class VmSource
         return $this->properties->{$name};
     }
     public function reloadProperties(){
-        $this->properties=ApiResponse::BodyResponse($this->HttpClient->get("vm/{$this->moid}"))->value;
+        $this->properties=ApiResponse::BodyResponse($this->HttpClient->get("vcenter/vm/{$this->moid}"))->value;
         return $this;
     }
     public function power(){

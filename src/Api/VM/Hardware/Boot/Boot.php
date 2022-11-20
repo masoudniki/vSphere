@@ -12,9 +12,9 @@ class Boot extends InitClass
 {
     use MOID;
     public function getHardwareBoot($moid=null){
-        return ApiResponse::BodyResponse($this->HttpClient->get("vm/{$this->getMoid($moid)}/hardware/boot"));
+        return ApiResponse::BodyResponse($this->HttpClient->get("vcenter/vm/{$this->getMoid($moid)}/hardware/boot"));
     }
     public function updateHardwareBoot($moid=null){
-        return ApiResponse::BodyResponse($this->HttpClient->get("vm/{$this->getMoid($moid)}/hardware"));
+        return ApiResponse::BodyResponse($this->HttpClient->get("vcenter/vm/{$this->getMoid($moid)}/hardware"));
     }
 }

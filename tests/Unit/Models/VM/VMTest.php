@@ -29,7 +29,7 @@ class VMTest extends TestCase
         $vmSource=$this->vm->byMoId('vm-111');
         $this->assertInstanceOf(VmSource::class,$vmSource);
         $this->assertEquals("vm-111",$vmSource->moid);
-        $this->assertLastRequestEquals("GET","/vm/vm-111");
+        $this->assertLastRequestEquals("GET","/vcenter/vm/vm-111");
     }
     public function test_can_not_get_vm_by_mo_id_without_providing_mo_id(){
         $this->expectException(\ArgumentCountError::class);
@@ -39,7 +39,7 @@ class VMTest extends TestCase
         $this->mockHandler->append(new Response(200,[],file_get_contents(__DIR__.'/fixture/vms.json')));
         $vmManager=$this->vm->all();
         $this->assertInstanceOf(ManageVms::class,$vmManager);
-        $this->assertLastRequestEquals("GET","/vm");
+        $this->assertLastRequestEquals("GET","/vcenter/vm");
         $this->assertCount(4, $vmManager);
         $this->assertInstanceOf(VmSource::class,$vmManager->first());
     }
@@ -51,7 +51,7 @@ class VMTest extends TestCase
         ];
         $vmManager=$this->vm->all($query);
         $this->assertInstanceOf(ManageVms::class,$vmManager);
-        $this->assertLastRequestEquals("GET","/vm");
+        $this->assertLastRequestEquals("GET","/vcenter/vm");
         $this->assertCount(4, $vmManager);
         $this->assertLastRequestQueryStrings($query);
 

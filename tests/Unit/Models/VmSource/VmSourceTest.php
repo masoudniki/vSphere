@@ -64,14 +64,14 @@ class VmSourceTest extends TestCase
     public function test_reload_properties(){
         $this->mockHandler->append(new Response(200,[],file_get_contents(__DIR__."/fixture/properties.json")));
         $this->vmsource->reloadProperties();
-        $this->assertLastRequestEquals("GET","/vm/vm-111");
+        $this->assertLastRequestEquals("GET","/vcenter/vm/vm-111");
         $this->assertLastRequestBodyIsEmpty();
         $this->assertEquals("POWERED_OFF",$this->vmsource->power_state);
     }
     public function test_turn_vm_on_with_power_accessor(){
         $this->mockHandler->append(new Response(200,[],""));
         $this->assertTrue($this->vmsource->power()->powerOn());
-        $this->assertLastRequestEquals("POST","/vm/vm-111/power/start");
+        $this->assertLastRequestEquals("POST","/vcenter/vm/vm-111/power/start");
         $this->assertLastRequestBodyIsEmpty();
     }
 

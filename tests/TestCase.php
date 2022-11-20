@@ -17,7 +17,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
     public function setUp(): void
     {
         $this->mockHandler = new MockHandler();
-        $this->vmwareApiClient=new VmwareApiClient('127.0.0.1',["username"=>"admin","password"=>"admin"],"443",false, 'https','/rest/vcenter','/rest/com/vmware/cim/session',new Client(['handler'=>$this->mockHandler]));
+        $this->vmwareApiClient=new VmwareApiClient('127.0.0.1',["username"=>"admin","password"=>"admin"],"443",false, 'https','/rest','/rest/com/vmware/cim/session',new Client(['handler'=>$this->mockHandler]));
     }
     public function tearDown(): void
     {
