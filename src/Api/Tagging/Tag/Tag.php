@@ -27,14 +27,7 @@ class Tag
         ]));
     }
     public function allTagsForCategory($category_id){
-        return ApiResponse::BodyResponse($this->HttpClient->post("com/vmware/cis/tagging/tag?~action=list-tags-for-category",
-            [
-                "json"=>
-                    [
-                        "category_id"=>$category_id
-                    ]
-            ]
-        ));
+        return ApiResponse::BodyResponse($this->HttpClient->post("com/vmware/cis/tagging/tag/id:$category_id?~action=list-tags-for-category"));
     }
     public function addToUsedBy($tag_id,$entity){
         return ApiResponse::BodyResponse($this->HttpClient->post("com/vmware/cis/tagging/tag/id:$tag_id?~action=add-to-used-by",
